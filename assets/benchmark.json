@@ -1,0 +1,553 @@
+{
+  "kind": "sentinel-benchmark",
+  "version": 1,
+  "generated_at": "2026-10-29T17:56:30+00:00",
+  "dataset": {
+    "kind": "synthetic",
+    "generator": "sentinel.simulator",
+    "disclaimer": "Telemetria sintetica e deterministica no protocolo do jogo. Os numeros provam o pipeline e as metas no dataset; nao provam generalizacao para servidores reais.",
+    "seed": 20261029,
+    "sessions": 224,
+    "windows": 2240,
+    "events": 482562,
+    "build_seconds": 20.04,
+    "splits": {
+      "train": {
+        "sessions": 164,
+        "windows": 1640
+      },
+      "val": {
+        "sessions": 30,
+        "windows": 300
+      },
+      "test": {
+        "sessions": 30,
+        "windows": 300
+      }
+    },
+    "sha256": "f2140ea7c09fe50532843cdebef322800c333f2d94be785e37ae1739732f7f34"
+  },
+  "model": {
+    "path": "C:\\Users\\pc\\Desktop\\Konaet IA\\anti-cheater\\artifacts\\model.json",
+    "sha256": "ed04aaa9c785f100f30727e434bc23a36439c87bfef469d4304bd8db38367051",
+    "threshold": 0.68,
+    "features": [
+      "speed_p90_ratio",
+      "air_fraction",
+      "hover_s",
+      "rise_blocks",
+      "reach_p95",
+      "reach_max",
+      "click_cps",
+      "click_cv",
+      "aim_speed_p95",
+      "aim_jerk",
+      "aim_error",
+      "targets_10s",
+      "packet_rate",
+      "break_ratio",
+      "break_rate",
+      "fall_no_damage",
+      "place_reach_p95"
+    ]
+  },
+  "metrics": {
+    "legit_sessions": 14,
+    "overt_sessions": 8,
+    "stealth_sessions": 8,
+    "rules_overt_recall": 1.0,
+    "rules_stealth_recall": 0.0,
+    "ml_stealth_recall": 1.0,
+    "hybrid_stealth_recall": 1.0,
+    "hybrid_overt_recall": 1.0,
+    "overall_hybrid_recall": 1.0,
+    "hybrid_legit_fpr": 0.0,
+    "rule_legit_fpr": 0.0,
+    "per_code": {
+      "autoclick": {
+        "sessions": 2,
+        "rule_hits": 1,
+        "hybrid_hits": 2
+      },
+      "fly": {
+        "sessions": 2,
+        "rule_hits": 1,
+        "hybrid_hits": 2
+      },
+      "killaura": {
+        "sessions": 2,
+        "rule_hits": 1,
+        "hybrid_hits": 2
+      },
+      "nofall": {
+        "sessions": 2,
+        "rule_hits": 1,
+        "hybrid_hits": 2
+      },
+      "nuker": {
+        "sessions": 2,
+        "rule_hits": 1,
+        "hybrid_hits": 2
+      },
+      "reach": {
+        "sessions": 2,
+        "rule_hits": 1,
+        "hybrid_hits": 2
+      },
+      "speed": {
+        "sessions": 2,
+        "rule_hits": 1,
+        "hybrid_hits": 2
+      },
+      "timer": {
+        "sessions": 2,
+        "rule_hits": 1,
+        "hybrid_hits": 2
+      }
+    },
+    "window_auc": 0.9993,
+    "threshold": 0.68,
+    "threshold_calibrated": 0.67,
+    "alert_floor": 0.68,
+    "target_fpr": 0.02
+  },
+  "gates": [
+    {
+      "gate": "rules_overt_recall",
+      "op": ">=",
+      "target": 0.9,
+      "value": 1.0,
+      "pass": true,
+      "description": "regras pegam >=90% dos cheats overt"
+    },
+    {
+      "gate": "hybrid_stealth_recall",
+      "op": ">=",
+      "target": 0.8,
+      "value": 1.0,
+      "pass": true,
+      "description": "regras+modelo pegam >=80% dos cheats stealth"
+    },
+    {
+      "gate": "hybrid_legit_fpr",
+      "op": "<=",
+      "target": 0.02,
+      "value": 0.0,
+      "pass": true,
+      "description": "falso positivo por sessao legitima <=2%"
+    },
+    {
+      "gate": "window_auc",
+      "op": ">=",
+      "target": 0.9,
+      "value": 0.9993,
+      "pass": true,
+      "description": "AUC do modelo por janela no teste >=0,90"
+    },
+    {
+      "gate": "overall_hybrid_recall",
+      "op": ">=",
+      "target": 0.85,
+      "value": 1.0,
+      "pass": true,
+      "description": "recall hibrido geral no teste >=85%"
+    }
+  ],
+  "pass": true,
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "sessions": [
+    {
+      "sid": "autoclick-overt-4",
+      "label": "cheat",
+      "code": "autoclick",
+      "variant": "overt",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.86,
+      "ml_max": 0.9751,
+      "rule_hit": true,
+      "ml_hit": true,
+      "hybrid_hit": true
+    },
+    {
+      "sid": "autoclick-stealth-4",
+      "label": "cheat",
+      "code": "autoclick",
+      "variant": "stealth",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.55,
+      "ml_max": 0.8671,
+      "rule_hit": false,
+      "ml_hit": true,
+      "hybrid_hit": true
+    },
+    {
+      "sid": "fly-overt-0",
+      "label": "cheat",
+      "code": "fly",
+      "variant": "overt",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.93,
+      "ml_max": 0.9619,
+      "rule_hit": true,
+      "ml_hit": true,
+      "hybrid_hit": true
+    },
+    {
+      "sid": "fly-stealth-4",
+      "label": "cheat",
+      "code": "fly",
+      "variant": "stealth",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.8958,
+      "rule_hit": false,
+      "ml_hit": true,
+      "hybrid_hit": true
+    },
+    {
+      "sid": "killaura-overt-5",
+      "label": "cheat",
+      "code": "killaura",
+      "variant": "overt",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.98,
+      "ml_max": 0.9859,
+      "rule_hit": true,
+      "ml_hit": true,
+      "hybrid_hit": true
+    },
+    {
+      "sid": "killaura-stealth-4",
+      "label": "cheat",
+      "code": "killaura",
+      "variant": "stealth",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.55,
+      "ml_max": 0.8666,
+      "rule_hit": false,
+      "ml_hit": true,
+      "hybrid_hit": true
+    },
+    {
+      "sid": "nofall-overt-0",
+      "label": "cheat",
+      "code": "nofall",
+      "variant": "overt",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.95,
+      "ml_max": 0.9609,
+      "rule_hit": true,
+      "ml_hit": true,
+      "hybrid_hit": true
+    },
+    {
+      "sid": "nofall-stealth-1",
+      "label": "cheat",
+      "code": "nofall",
+      "variant": "stealth",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.5776,
+      "ml_max": 0.7866,
+      "rule_hit": false,
+      "ml_hit": true,
+      "hybrid_hit": true
+    },
+    {
+      "sid": "nuker-overt-2",
+      "label": "cheat",
+      "code": "nuker",
+      "variant": "overt",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.95,
+      "ml_max": 0.9998,
+      "rule_hit": true,
+      "ml_hit": true,
+      "hybrid_hit": true
+    },
+    {
+      "sid": "nuker-stealth-0",
+      "label": "cheat",
+      "code": "nuker",
+      "variant": "stealth",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.8221,
+      "rule_hit": false,
+      "ml_hit": true,
+      "hybrid_hit": true
+    },
+    {
+      "sid": "reach-overt-0",
+      "label": "cheat",
+      "code": "reach",
+      "variant": "overt",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.96,
+      "ml_max": 0.9955,
+      "rule_hit": true,
+      "ml_hit": true,
+      "hybrid_hit": true
+    },
+    {
+      "sid": "reach-stealth-1",
+      "label": "cheat",
+      "code": "reach",
+      "variant": "stealth",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.9212,
+      "rule_hit": false,
+      "ml_hit": true,
+      "hybrid_hit": true
+    },
+    {
+      "sid": "speed-overt-0",
+      "label": "cheat",
+      "code": "speed",
+      "variant": "overt",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.95,
+      "ml_max": 0.973,
+      "rule_hit": true,
+      "ml_hit": true,
+      "hybrid_hit": true
+    },
+    {
+      "sid": "speed-stealth-0",
+      "label": "cheat",
+      "code": "speed",
+      "variant": "stealth",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.8208,
+      "rule_hit": false,
+      "ml_hit": true,
+      "hybrid_hit": true
+    },
+    {
+      "sid": "timer-overt-4",
+      "label": "cheat",
+      "code": "timer",
+      "variant": "overt",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.8631,
+      "ml_max": 0.9924,
+      "rule_hit": true,
+      "ml_hit": true,
+      "hybrid_hit": true
+    },
+    {
+      "sid": "timer-stealth-3",
+      "label": "cheat",
+      "code": "timer",
+      "variant": "stealth",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.8066,
+      "rule_hit": false,
+      "ml_hit": true,
+      "hybrid_hit": true
+    },
+    {
+      "sid": "legit-012",
+      "label": "legit",
+      "code": "legit",
+      "variant": "base",
+      "profile": "casual",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.0666,
+      "rule_hit": false,
+      "ml_hit": false,
+      "hybrid_hit": false
+    },
+    {
+      "sid": "legit-016",
+      "label": "legit",
+      "code": "legit",
+      "variant": "base",
+      "profile": "casual",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.1084,
+      "rule_hit": false,
+      "ml_hit": false,
+      "hybrid_hit": false
+    },
+    {
+      "sid": "legit-025",
+      "label": "legit",
+      "code": "legit",
+      "variant": "base",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.4246,
+      "rule_hit": false,
+      "ml_hit": false,
+      "hybrid_hit": false
+    },
+    {
+      "sid": "legit-032",
+      "label": "legit",
+      "code": "legit",
+      "variant": "base",
+      "profile": "casual",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.0499,
+      "rule_hit": false,
+      "ml_hit": false,
+      "hybrid_hit": false
+    },
+    {
+      "sid": "legit-041",
+      "label": "legit",
+      "code": "legit",
+      "variant": "base",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.4801,
+      "rule_hit": false,
+      "ml_hit": false,
+      "hybrid_hit": false
+    },
+    {
+      "sid": "legit-045",
+      "label": "legit",
+      "code": "legit",
+      "variant": "base",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.6207,
+      "rule_hit": false,
+      "ml_hit": false,
+      "hybrid_hit": false
+    },
+    {
+      "sid": "legit-048",
+      "label": "legit",
+      "code": "legit",
+      "variant": "base",
+      "profile": "casual",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.0383,
+      "rule_hit": false,
+      "ml_hit": false,
+      "hybrid_hit": false
+    },
+    {
+      "sid": "legit-061",
+      "label": "legit",
+      "code": "legit",
+      "variant": "base",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.5411,
+      "rule_hit": false,
+      "ml_hit": false,
+      "hybrid_hit": false
+    },
+    {
+      "sid": "legit-065",
+      "label": "legit",
+      "code": "legit",
+      "variant": "base",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.1886,
+      "rule_hit": false,
+      "ml_hit": false,
+      "hybrid_hit": false
+    },
+    {
+      "sid": "legit-066",
+      "label": "legit",
+      "code": "legit",
+      "variant": "base",
+      "profile": "casual",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.0848,
+      "rule_hit": false,
+      "ml_hit": false,
+      "hybrid_hit": false
+    },
+    {
+      "sid": "legit-077",
+      "label": "legit",
+      "code": "legit",
+      "variant": "base",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.2692,
+      "rule_hit": false,
+      "ml_hit": false,
+      "hybrid_hit": false
+    },
+    {
+      "sid": "legit-080",
+      "label": "legit",
+      "code": "legit",
+      "variant": "base",
+      "profile": "casual",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.0387,
+      "rule_hit": false,
+      "ml_hit": false,
+      "hybrid_hit": false
+    },
+    {
+      "sid": "legit-084",
+      "label": "legit",
+      "code": "legit",
+      "variant": "base",
+      "profile": "casual",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.0596,
+      "rule_hit": false,
+      "ml_hit": false,
+      "hybrid_hit": false
+    },
+    {
+      "sid": "legit-091",
+      "label": "legit",
+      "code": "legit",
+      "variant": "base",
+      "profile": "ranked",
+      "windows": 10,
+      "rule_max": 0.0,
+      "ml_max": 0.2402,
+      "rule_hit": false,
+      "ml_hit": false,
+      "hybrid_hit": false
+    }
+  ]
+}

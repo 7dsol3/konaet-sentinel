@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Konaet Sentinel · o jogo limpo volta a ser a regra</title>
+<meta name="description" content="Anti-cheat comportamental com IA explicável, escudo para o jogador limpo e banimento manual por máquina. Teste 30 dias. Feito para servidores de qualquer jogo.">
+<meta property="og:title" content="Konaet Sentinel · o jogo limpo volta a ser a regra">
+<meta property="og:description" content="IA explicável, escudo em partida e evidência encadeada. Detecta, prova e protege — sem ban automático.">
+<meta property="og:image" content="https://7dsol3.github.io/konaet-sentinel/assets/cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Capa do Konaet Sentinel: O jogo limpo volta a ser a regra.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://7dsol3.github.io/konaet-sentinel/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Konaet Sentinel · o jogo limpo volta a ser a regra">
+<meta name="twitter:description" content="IA explicável, escudo em partida e evidência encadeada. Detecta, prova e protege — sem ban automático.">
+<meta name="twitter:image" content="https://7dsol3.github.io/konaet-sentinel/assets/cover.jpg">
+<meta name="theme-color" content="#f4f0e8">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://7dsol3.github.io/konaet-sentinel/">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="assets/liquid-hero.webp" type="image/webp">
+<link rel="preload" as="font" href="assets/fonts/fraunces-normal-300-700-latin.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="assets/fonts/instrument-sans-normal-400-700-latin.woff2" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+
+<div class="frame" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor-lens" id="cursor-lens" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+<header class="masthead" id="masthead">
+  <div class="nav-shell">
+    <a class="brand" href="#top" aria-label="Konaet Sentinel, início">
+      <img src="assets/logo.svg" alt="" width="34" height="34">
+      <span class="brand-word"><b>KONAET</b><small>SENTINEL</small></span>
+    </a>
+
+    <nav class="primary" id="primary-nav" aria-label="Navegação principal">
+      <span class="nav-lens" id="nav-lens" aria-hidden="true"></span>
+      <span class="nav-drop" id="nav-drop" aria-hidden="true"></span>
+      <a href="#produto" data-nav="produto">Produto</a>
+      <a href="#ia" data-nav="ia">IA</a>
+      <a href="#jogos" data-nav="jogos">Jogos</a>
+      <a href="#banimentos" data-nav="banimentos">Banimentos</a>
+      <a href="#prova" data-nav="prova">Prova</a>
+      <a href="#planos" data-nav="planos">Planos</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="nav-quiet" href="#faq">Dúvidas</a>
+      <a class="btn btn-ink btn-sm magnetic" href="#planos">Testar 30 dias</a>
+    </div>
+
+    <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-sheet" aria-label="Abrir menu">
+      <span></span><span></span>
+    </button>
+  </div>
+
+  <div class="mobile-sheet" id="mobile-sheet" hidden>
+    <a href="#produto">Produto</a>
+    <a href="#ia">IA comportamental</a>
+    <a href="#jogos">Perfis de jogo</a>
+    <a href="#banimentos">Banimento por máquina</a>
+    <a href="#escudo">Escudo</a>
+    <a href="#prova">Benchmark</a>
+    <a href="#planos">Planos</a>
+    <a href="#faq">Dúvidas</a>
+    <a class="btn btn-ink" href="#planos">Testar 30 dias</a>
+    <p>sem cartão · trial local de 30 dias</p>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ============================================================ hero -->
+  <section class="hero" id="top">
+    <div class="hero-art" aria-hidden="true">
+      <picture>
+        <source srcset="assets/liquid-hero.webp" type="image/webp">
+        <img src="assets/liquid-hero.jpg" alt="" width="1536" height="1024" fetchpriority="high">
+      </picture>
+    </div>
+    <div class="hero-veil" aria-hidden="true"></div>
+
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow reveal"><span class="eyebrow-dot"></span>anti-cheat comportamental · v1.0</p>
+        <h1 class="reveal" style="--d:.06s">O jogo limpo<br>volta a ser<br><span class="accent">a regra<svg class="underline" viewBox="0 0 220 22" preserveAspectRatio="none" aria-hidden="true"><path d="M3 14c42-7 108-9 214-4" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg></span>.</h1>
+        <p class="lede reveal" style="--d:.12s">Uma IA que enxerga comportamento, um escudo que tira o efeito do cheat da partida e uma evidência que se sustenta. <strong>Sem banir no automático.</strong></p>
+        <div class="hero-actions reveal" style="--d:.18s">
+          <a class="btn btn-ink magnetic" href="assets/konaet-sentinel-trial.zip" download>
+            Baixar teste de 30 dias
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 20h16"/></svg>
+          </a>
+          <a class="btn btn-glass" href="#produto">Ver por dentro</a>
+        </div>
+        <p class="micro reveal" style="--d:.24s">Sem cartão. Sem cadastro. O teste começa na primeira execução.</p>
+      </div>
+
+      <div class="hero-aside">
+        <div class="seal reveal" style="--d:.3s" aria-label="30 dias grátis, sem cartão">
+          <span class="seal-ring"></span>
+          <span class="seal-inner"><strong>30</strong><small>dias grátis</small></span>
+          <em>sem cartão</em>
+        </div>
+
+        <article class="case-tag glass reveal" style="--d:.36s" id="hero-case">
+          <div class="case-tag-head">
+            <span class="tag-label">último banimento · máquina</span>
+            <span class="tag-dot"></span>
+          </div>
+          <div class="case-tag-name">GhostWalker <span>exemplo</span></div>
+          <p>Disparo com alcance impossível e mira instantânea.</p>
+          <dl>
+            <div><dt>máquina</dt><dd><code>ks1-4f8f…7a9d</code></dd></div>
+            <div><dt>caso</dt><dd><code>BAN-2026-0184</code></dd></div>
+          </dl>
+          <a href="#banimentos" class="case-tag-link">ver o dossiê <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </div>
+
+    <div class="wrap hero-measure">
+      <div class="measure"><strong>17</strong><span>sinais comportamentais</span></div>
+      <div class="measure"><strong>0,9993</strong><span>AUC por janela*</span></div>
+      <div class="measure"><strong>5/5</strong><span>gates no benchmark</span></div>
+      <div class="measure"><strong>0</strong><span>banimentos automáticos</span></div>
+    </div>
+  </section>
+
+  <!-- ============================================================ manifesto -->
+  <section class="manifesto section-pad">
+    <div class="wrap">
+      <p class="kicker reveal"><span>01</span> o problema</p>
+      <div class="manifesto-grid">
+        <h2 class="reveal">O cheat não rouba<br>só a partida.<br><em>Rouba a próxima.</em></h2>
+        <div class="manifesto-copy reveal" style="--d:.08s">
+          <p class="big">A sensação que expulsa jogador não é o hack. É assistir, sem poder fazer nada, enquanto a regra do jogo deixa de existir.</p>
+          <p>O Sentinel foi desenhado para o outro lado: o jogador que chegou primeiro, treinou a mira, aprendeu o mapa. Ele não precisa entender de anti-cheat. Precisa que o servidor continue justo.</p>
+          <p class="signature">Konaet · engenharia de jogo limpo</p>
+        </div>
+      </div>
+      <div class="liquid-rule reveal" aria-hidden="true">
+        <svg viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0 24c160-22 340 18 500 2s250-26 410-6 210 16 290 2" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="606" cy="18" r="3.4" fill="currentColor"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ produto -->
+  <section class="section-pad product" id="produto">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker reveal"><span>02</span> o produto</p>
+        <h2 class="reveal">Três camadas.<br><em>Uma decisão humana.</em></h2>
+        <p class="section-lede reveal">Regra imediata, IA para o que se esconde e escudo para quem está limpo. O ban continua sendo do operador — por desenho, não por falta de recurso.</p>
+      </div>
+
+      <div class="layers">
+        <article class="layer reveal" data-layer>
+          <span class="layer-index">01</span>
+          <span class="layer-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 30h8l5-16 7 28 6-22 4 10h10"/><circle cx="38" cy="30" r="2.4"/></svg>
+          </span>
+          <div class="layer-body">
+            <h3>Física determinística</h3>
+            <p>Velocidade contra o limite do perfil, subida sem autorização, alcance, quebra abaixo do tempo mínimo, cadência de pacotes. Medidas objetivas, resposta imediata.</p>
+            <div class="layer-tags"><span>explicável</span><span>sem caixa-preta</span><span>por perfil de jogo</span></div>
+          </div>
+          <div class="layer-meta"><span>latência</span><strong>imediata</strong><span>falso positivo</span><strong>baixo por natureza</strong></div>
+        </article>
+
+        <article class="layer reveal" style="--d:.06s" data-layer>
+          <span class="layer-index">02</span>
+          <span class="layer-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="24" cy="24" r="4"/><circle cx="24" cy="24" r="12" opacity=".55"/><circle cx="24" cy="24" r="20" opacity=".25"/><path d="M24 4v5M24 39v5M4 24h5M39 24h5"/></svg>
+          </span>
+          <div class="layer-body">
+            <h3>IA comportamental</h3>
+            <p>Regressão logística treinada em janelas de 30 s, com contribuição por sinal. Ela pega a variante que fica abaixo da regra — e mostra exatamente o que puxou o score.</p>
+            <div class="layer-tags"><span>17 features</span><span>probabilidade calibrada</span><span>contribuições por alerta</span></div>
+          </div>
+          <div class="layer-meta"><span>saída</span><strong>probabilidade + porquê</strong><span>calibração</span><strong>por jogo</strong></div>
+        </article>
+
+        <article class="layer reveal" style="--d:.12s" data-layer>
+          <span class="layer-index">03</span>
+          <span class="layer-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M24 5 10 10v12c0 9 6 15.5 14 18.5C32 37.5 38 31 38 22V10L24 5Z"/><path d="m18 23 4 4 8-9"/></svg>
+          </span>
+          <div class="layer-body">
+            <h3>Escudo em partida</h3>
+            <p>O adaptador recebe comandos e aplica no servidor: movimento preso à física, hits cancelados, blocos limitados, combate isolado. Quem está limpo não paga pelo cheat do outro.</p>
+            <div class="layer-tags"><span>5 comandos</span><span>servidor como autoridade</span><span>sem ban automático</span></div>
+          </div>
+          <div class="layer-meta"><span>alvo</span><strong>só o sinalizado</strong><span>revisão</span><strong>sempre humana</strong></div>
+        </article>
+      </div>
+
+      <div class="evidence-ribbon glass reveal">
+        <div class="evidence-ribbon-copy">
+          <span class="tag-label">cada alerta carrega o porquê</span>
+          <p>“p95 de alcance 6,4 m contra 3,65 m do perfil · 17 alvos em 1,6 s · giro de 3.420°/s”</p>
+        </div>
+        <div class="chain" aria-label="Cadeia de evidência de exemplo">
+          <span class="chain-block"><i>#0181</i><code>91c4…7a1e</code></span>
+          <span class="chain-link" aria-hidden="true"></span>
+          <span class="chain-block"><i>#0182</i><code>7e2f…b93c</code></span>
+          <span class="chain-link" aria-hidden="true"></span>
+          <span class="chain-block is-head"><i>#0183</i><code>4d8a…c210</code></span>
+        </div>
+        <a href="#prova" class="quiet-link">como a cadeia é verificada <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ IA -->
+  <section class="section-pad ai-section" id="ia">
+    <div class="wrap">
+      <div class="ai-head">
+        <p class="kicker reveal"><span>03</span> a inteligência</p>
+        <h2 class="reveal">A IA aponta.<br><em>E mostra por quê.</em></h2>
+        <p class="section-lede reveal">Não é uma caixa-preta que cospe “cheater”. É um modelo pequeno, auditável e calibrado, com 17 medidas que o servidor já observou. Cada alerta vem com a contribuição de cada sinal.</p>
+      </div>
+
+      <div class="ai-grid">
+        <div class="constellation-wrap reveal">
+          <div class="constellation glass">
+            <svg id="constellation" viewBox="0 0 520 520" role="img" aria-labelledby="constellation-title">
+              <title id="constellation-title">Mapa interativo dos 17 sinais comportamentais da IA</title>
+            </svg>
+            <span class="constellation-hint">toque num sinal</span>
+            <span class="constellation-caption">17 sinais · 1 decisão explicável</span>
+          </div>
+          <div class="signal-legend" aria-hidden="true">
+            <span style="--g:#c07150"><i></i>movimento</span>
+            <span style="--g:#8a6f86"><i></i>combate</span>
+            <span style="--g:#93a68c"><i></i>entrada</span>
+            <span style="--g:#a394bd"><i></i>contexto</span>
+          </div>
+          <div class="ai-readout glass" aria-live="polite">
+            <span class="tag-label">leitura do sinal</span>
+            <strong id="ai-signal">p90 da velocidade / limite</strong>
+            <p id="ai-signal-desc">Mede o quanto o p90 da velocidade passa do limite físico do perfil. É o primeiro sinal de speed.</p>
+            <span class="ai-value" id="ai-signal-value">0,82</span>
+          </div>
+        </div>
+
+        <div class="ai-side">
+          <div class="model-card glass reveal">
+            <div class="model-top">
+              <span class="tag-label">model card · sintético</span>
+              <span class="status-pill"><i></i>calibrado</span>
+            </div>
+            <div class="model-auc"><strong>0,9993</strong><span>AUC por janela*</span></div>
+            <div class="model-facts">
+              <div><span>features</span><b>17</b></div>
+              <div><span>janela</span><b>30 s</b></div>
+              <div><span>algoritmo</span><b>logístico</b></div>
+              <div><span>explicação</span><b>por sinal</b></div>
+            </div>
+            <p class="model-note">*Dataset sintético e determinístico do próprio simulador. Prova o pipeline e os gates; não prova generalização para o seu servidor.</p>
+          </div>
+
+          <div class="contrib glass reveal" style="--d:.08s">
+            <div class="contrib-head"><span class="tag-label">exemplo de contribuição</span><span>risco 0,94</span></div>
+            <div class="contrib-row"><span>alcance p95</span><span class="bar"><i style="width:92%"></i></span><b>+0,36</b></div>
+            <div class="contrib-row"><span>giros de mira</span><span class="bar"><i style="width:70%"></i></span><b>+0,27</b></div>
+            <div class="contrib-row"><span>velocidade p90</span><span class="bar"><i style="width:48%"></i></span><b>+0,18</b></div>
+            <div class="contrib-row is-negative"><span>CV de cliques</span><span class="bar"><i style="width:26%"></i></span><b>−0,07</b></div>
+          </div>
+
+          <p class="ai-footnote reveal">A IA foi calibrada no perfil de referência. Nos outros perfis, as regras rodam sozinhas até existir telemetria rotulada para uma nova calibração. <a href="#jogos">ver perfis</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ jogos -->
+  <section class="section-pad games-section" id="jogos">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker reveal"><span>04</span> qualquer servidor</p>
+        <h2 class="reveal">Um motor.<br><em>Sete físicas.</em></h2>
+        <p class="section-lede reveal">O protocolo é o mesmo; o perfil muda o que é fisicamente possível em cada jogo. Escolha um perfil para ver os limites e o que a IA já consegue medir.</p>
+      </div>
+
+      <div class="game-lab reveal">
+        <div class="game-rail" role="tablist" aria-label="Perfis de jogo">
+          <button class="game-chip is-active" role="tab" aria-selected="true" data-game="dayz"><span class="mono-mark">DZ</span><span>DayZ</span><i>servidor dedicado</i></button>
+          <button class="game-chip" role="tab" aria-selected="false" data-game="infestation"><span class="mono-mark">IZ</span><span>Infestation</span><i>servidor privado</i></button>
+          <button class="game-chip" role="tab" aria-selected="false" data-game="pubg"><span class="mono-mark">PU</span><span>PUBG</span><i>servidor próprio</i></button>
+          <button class="game-chip" role="tab" aria-selected="false" data-game="cod"><span class="mono-mark">CD</span><span>Call of Duty</span><i>servidor próprio</i></button>
+          <button class="game-chip" role="tab" aria-selected="false" data-game="battlefield"><span class="mono-mark">BF</span><span>Battlefield</span><i>servidor próprio</i></button>
+          <button class="game-chip" role="tab" aria-selected="false" data-game="minecraft"><span class="mono-mark">MC</span><span>Minecraft</span><i>referência</i></button>
+          <button class="game-chip" role="tab" aria-selected="false" data-game="generic"><span class="mono-mark">GN</span><span>Genérico</span><i>seu jogo</i></button>
+        </div>
+
+        <div class="game-detail" id="game-detail" role="tabpanel" aria-live="polite">
+          <div class="game-detail-head">
+            <div>
+              <span class="tag-label" id="game-family">survival · servidor dedicado</span>
+              <h3 id="game-name">DayZ</h3>
+            </div>
+            <span class="game-status" id="game-status"><i></i>mod autorizado</span>
+          </div>
+
+          <div class="game-gauge">
+            <div class="gauge-label"><span>limite físico do perfil</span><strong><b id="game-speed">7,2</b> <small id="game-unit">m/s</small></strong></div>
+            <div class="gauge-track"><span id="game-gauge-fill"></span><i class="gauge-mark"></i></div>
+            <div class="gauge-foot"><span>0</span><span>velocidade legítima máxima</span></div>
+          </div>
+
+          <div class="rule-grid" id="game-rules"></div>
+
+          <div class="game-note">
+            <span class="tag-label">por que esse perfil existe</span>
+            <p id="game-note">Distância de arma não é alcance de braço. O perfil desliga a regra de reach e mantém velocidade, vertical e mira — sem inventar comparação com Minecraft.</p>
+          </div>
+
+          <div class="game-actions">
+            <a class="btn btn-ink btn-sm" href="assets/konaet-sentinel-trial.zip" download>Baixar adaptador + trial</a>
+            <button class="copy-btn" data-copy="dns" type="button">copiar exemplo de evento <span>⧉</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="integration-strip reveal">
+        <div>
+          <span class="tag-label">entrada universal</span>
+          <p>TCP em loopback ou <code>POST /api/ingest</code>. Um evento por linha, relógio do servidor, sem hook no cliente do jogador.</p>
+        </div>
+        <pre id="event-example"><code>{"type":"join","player":"p1","name":"Fulano",
+ "game":"dayz","machine":"ks1-…","t":0}</code></pre>
+        <button class="copy-btn" data-copy="event" type="button">copiar <span>⧉</span></button>
+      </div>
+
+      <p class="honest-note reveal">Perfis para servidores que você opera. Servidores oficiais de PUBG, Call of Duty e Battlefield não permitem inserir telemetria sem autorização do operador; o Sentinel não faz bypass de anti-cheat de terceiros.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ banimentos -->
+  <section class="ban-section" id="banimentos">
+    <div class="ban-photo" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="ban-head">
+        <p class="kicker light reveal"><span>05</span> identidade de máquina</p>
+        <h2 class="reveal">A conta é nova.<br><em>A máquina não.</em></h2>
+        <p class="section-lede light reveal">O Sentinela não precisa saber quem é você. Guarda um hash da máquina, com sal do servidor, e só o operador decide quando aquilo vira banimento. A decisão vem com nome, motivo, porquê e um caminho de apelação.</p>
+      </div>
+
+      <div class="ban-grid">
+        <article class="ban-case reveal">
+          <div class="ban-case-top">
+            <span class="tag-label light">caso de demonstração</span>
+            <span class="ban-status"><i></i>banimento ativo</span>
+          </div>
+          <div class="ban-case-name"><strong>GhostWalker</strong><span>conta: ghost_walker</span></div>
+          <div class="case-tabs" role="tablist" aria-label="Detalhes do caso">
+            <button class="case-tab is-active" role="tab" aria-selected="true" data-case="registro">registro</button>
+            <button class="case-tab" role="tab" aria-selected="false" data-case="porque">por quê</button>
+            <button class="case-tab" role="tab" aria-selected="false" data-case="direitos">direitos</button>
+            <span class="case-tab-lens" id="case-lens" aria-hidden="true"></span>
+          </div>
+          <div class="case-body" id="case-body">
+            <dl class="case-grid">
+              <div><dt>máquina</dt><dd><code>ks1-4f8f4c1d…7a9d</code></dd></div>
+              <div><dt>operador</dt><dd>dono do servidor</dd></div>
+              <div><dt>motivo</dt><dd>alcance impossível + mira instantânea</dd></div>
+              <div><dt>quando</dt><dd>29 out 2026 · 14:16 UTC</dd></div>
+              <div><dt>caso</dt><dd><code>BAN-2026-0184</code></dd></div>
+              <div><dt>expira</dt><dd>permanente · revisável</dd></div>
+            </dl>
+            <div class="case-seal" aria-hidden="true"><span>K</span><small>KONAET<br>SENTINEL</small></div>
+          </div>
+          <p class="case-foot">Hash, não identificador cru. Sem atestação de GPU: <a href="#faq">os limites estão escritos</a>.</p>
+        </article>
+
+        <div class="ban-copy reveal" style="--d:.08s">
+          <h3>O que exatamente a máquina prova?</h3>
+          <p>Ela reconhece a mesma instalação quando o operador decide banir. É um pseudônimo estável — não uma impressão digital forense. Trocar placa, reinstalar o sistema ou usar máquina compartilhada muda o hash, e isso está documentado em vez de escondido.</p>
+          <div class="ban-steps">
+            <div><span>01</span><p>Launcher ou servidor confiável calcula a impressão.</p></div>
+            <div><span>02</span><p>Sentinela aplica sal e guarda só o SHA-256.</p></div>
+            <div><span>03</span><p>O operador registra o ban manual, com motivo.</p></div>
+            <div><span>04</span><p>O adaptador lê <code>/api/protect</code> e remove o jogador.</p></div>
+          </div>
+          <div class="ban-limits">
+            <div><b>não é</b><span>ban automático por IA</span></div>
+            <div><b>não é</b><span>atestado de hardware</span></div>
+            <div><b>é</b><span>decisão humana + registro</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ escudo -->
+  <section class="section-pad shield-section" id="escudo">
+    <div class="wrap shield-grid">
+      <div class="shield-copy">
+        <p class="kicker reveal"><span>06</span> o escudo</p>
+        <h2 class="reveal">O hacker pode<br>até estar lá.<br><em>O efeito dele, não.</em></h2>
+        <p class="section-lede reveal">O motor não protege o PC do adversário. Ele protege a partida: o servidor aplica os comandos do escudo só contra quem foi sinalizado, e só depois de uma regra forte ou duas janelas de IA muito altas.</p>
+        <ul class="shield-points reveal">
+          <li><span>01</span>Hits cancelados contra o jogador limpo.</li>
+          <li><span>02</span>Movimento preso à física autorizada.</li>
+          <li><span>03</span>Combate isolado quando a escalada pede.</li>
+        </ul>
+        <p class="micro reveal">Nenhum jogador é banido pelo escudo. A quarentena é de combate, não de conta.</p>
+      </div>
+
+      <div class="shield-demo reveal" style="--d:.1s">
+        <div class="shield-demo-head">
+          <span class="tag-label">simulação de partida</span>
+          <div class="shield-switch" id="shield-switch" role="switch" aria-checked="true" tabindex="0" aria-label="Alternar escudo">
+            <span class="switch-label off">sem</span>
+            <span class="switch-track"><i></i></span>
+            <span class="switch-label on">com</span>
+          </div>
+        </div>
+        <div class="demo-player">
+          <span class="avatar-lg">LU</span>
+          <div><strong>LuanPvP</strong><span>jogador limpo · 7 anos de conta</span></div>
+          <span class="demo-state" id="demo-state"><i></i>protegido</span>
+        </div>
+        <div class="demo-rows">
+          <div class="demo-row"><span>dano recebido</span><b id="demo-damage">0,0</b><i class="spark" id="demo-spark-1"></i></div>
+          <div class="demo-row"><span>hits cancelados</span><b id="demo-hits">12</b><i class="spark" id="demo-spark-2"></i></div>
+          <div class="demo-row"><span>combate</span><b id="demo-combat">isolado</b><i class="spark" id="demo-spark-3"></i></div>
+          <div class="demo-row"><span>partida</span><b id="demo-match">segue jogando</b><i class="spark" id="demo-spark-4"></i></div>
+        </div>
+        <div class="demo-command">
+          <span class="tag-label">comando aplicado no servidor</span>
+          <code id="demo-command">cancel_hits · quarantine_combat</code>
+        </div>
+        <p class="demo-note" id="demo-note">Exemplo ilustrativo. O adaptador decide como aplicar cada comando.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ prova -->
+  <section class="section-pad proof-section" id="prova">
+    <div class="wrap">
+      <p class="kicker reveal"><span>07</span> a prova</p>
+      <div class="proof-head">
+        <h2 class="reveal">Prova,<br><em>não promessa.</em></h2>
+        <div class="proof-score reveal">
+          <span>AUC por janela*</span>
+          <strong>0,9993</strong>
+          <small>dataset sintético · 224 sessões · 2.240 janelas</small>
+        </div>
+      </div>
+
+      <div class="proof-table-wrap reveal">
+        <table class="proof-table">
+          <thead><tr><th>gate</th><th>meta</th><th>resultado</th><th>estado</th></tr></thead>
+          <tbody>
+            <tr><td>Regras pegam cheats overt</td><td>≥ 0,90</td><td>1,000</td><td><span class="pass">PASS</span></td></tr>
+            <tr><td>Híbrido pega cheats stealth</td><td>≥ 0,80</td><td>1,000</td><td><span class="pass">PASS</span></td></tr>
+            <tr><td>Falso positivo por sessão legítima</td><td>≤ 0,02</td><td>0,000</td><td><span class="pass">PASS</span></td></tr>
+            <tr><td>AUC do modelo por janela</td><td>≥ 0,90</td><td>0,9993</td><td><span class="pass">PASS</span></td></tr>
+            <tr><td>Recall híbrido geral</td><td>≥ 0,85</td><td>1,000</td><td><span class="pass">PASS</span></td></tr>
+          </tbody>
+        </table>
+        <div class="proof-side">
+          <p class="proof-disclaimer">*Sintético, gerado pelo simulador no mesmo protocolo do jogo. Prova o pipeline e os gates <em>neste</em> dataset; não prova generalização para o seu servidor. A validação em produção usa telemetria rotulada sua.</p>
+          <a class="quiet-link" href="assets/benchmark.json" target="_blank" rel="noopener">abrir benchmark.json <span aria-hidden="true">↗</span></a>
+          <button class="copy-btn" data-copy="train" type="button">copiar comando de reprodução <span>⧉</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ planos -->
+  <section class="section-pad pricing-section" id="planos">
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="kicker reveal"><span>08</span> planos</p>
+        <h2 class="reveal">Comece pelo teste.<br><em>Pague se fizer sentido.</em></h2>
+        <p class="section-lede reveal">Preço em BRL, pagamento por PIX. A licença é emitida após a confirmação e enviada ao e-mail informado.</p>
+      </div>
+
+      <div class="plans">
+        <article class="plan reveal">
+          <div class="plan-top"><span class="plan-name">Teste</span><span class="plan-badge">30 dias</span></div>
+          <div class="plan-price"><strong>R$ 0</strong><span>/ 30 dias</span></div>
+          <p class="plan-desc">Para provar no seu servidor, sem cartão e sem cadastro.</p>
+          <ul>
+            <li>30 dias completos</li>
+            <li>1 servidor · avaliação completa</li>
+            <li>Dashboard, escudo e evidência</li>
+            <li>Modelo e benchmark inclusos</li>
+          </ul>
+          <a class="btn btn-glass wide" href="assets/konaet-sentinel-trial.zip" download>Baixar teste</a>
+          <p class="plan-foot">O teste começa na primeira execução.</p>
+        </article>
+
+        <article class="plan featured reveal" style="--d:.08s">
+          <span class="plan-flag">mais escolhido</span>
+          <div class="plan-top"><span class="plan-name">Pro</span><span class="plan-badge">produção</span></div>
+          <div class="plan-price"><strong>R$ 79</strong><span>/ 30 dias</span></div>
+          <p class="plan-desc">Um servidor de verdade, com o escudo ligado.</p>
+          <ul>
+            <li>1 servidor de produção</li>
+            <li>Escudo e quarentena de combate</li>
+            <li>Atualizações da versão 1.x</li>
+            <li>Suporte por WhatsApp</li>
+          </ul>
+          <button class="btn btn-cream wide magnetic" type="button" data-plan="pro">Comprar Pro · PIX</button>
+          <p class="plan-foot">Renovação manual, sem cobrança automática.</p>
+        </article>
+
+        <article class="plan reveal" style="--d:.16s">
+          <div class="plan-top"><span class="plan-name">Network</span><span class="plan-badge">5 assentos</span></div>
+          <div class="plan-price"><strong>R$ 299</strong><span>/ 30 dias</span></div>
+          <p class="plan-desc">Para redes com mais de um servidor.</p>
+          <ul>
+            <li>Até 5 servidores</li>
+            <li>Tudo do Pro</li>
+            <li>Relatório mensal de alertas</li>
+            <li>Suporte prioritário</li>
+          </ul>
+          <button class="btn btn-glass wide" type="button" data-plan="network">Comprar Network · PIX</button>
+          <p class="plan-foot">Licença com 5 assentos.</p>
+        </article>
+      </div>
+      <p class="pricing-note reveal">Todos os planos incluem adaptador de referência, dashboard local e cadeia de evidência SHA-256.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ faq -->
+  <section class="section-pad faq-section" id="faq">
+    <div class="wrap faq-grid">
+      <div class="faq-intro">
+        <p class="kicker reveal"><span>09</span> dúvidas</p>
+        <h2 class="reveal">Perguntas<br><em>que não fogem.</em></h2>
+        <p class="section-lede reveal">Se a resposta for “não”, ela começa com “não”. O produto é medido, não mitificado.</p>
+        <a class="quiet-link reveal" href="https://wa.me/message/43CXZJ7NW2FPDO" target="_blank" rel="noopener">falar no WhatsApp <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="faq-list">
+        <details class="reveal" open>
+          <summary>O anti-cheat é 100%?<span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>Não. Nenhum é. O que entregamos é medição: gates de recall e falso positivo, benchmark reproduzível e evidência por alerta. O modelo foi avaliado em dataset sintético; o seu servidor é o teste que vale.</p>
+        </details>
+        <details class="reveal">
+          <summary>Funciona em qualquer jogo?<span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>O motor é agnóstico. Ele consome eventos no protocolo JSONL (movimento, ataque, dano, e opcionalmente quebra/colocação). O adaptador é a única parte específica do jogo. A v1.0 inclui adaptador de referência para Minecraft e um adaptador genérico; para outro título, você escreve a tradução dos eventos do seu servidor.</p>
+        </details>
+        <details class="reveal">
+          <summary>Serve para PUBG, COD ou Battlefield oficial?<span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>Não sem autorização do operador. Servidores oficiais não aceitam telemetria externa nem plugins arbitrários, e o Sentinel não faz bypass de anti-cheat de terceiros. Os perfis existem para servidores dedicados, mods autorizados e comunidades que controlam a própria infraestrutura.</p>
+        </details>
+        <details class="reveal">
+          <summary>O ban por máquina é atestação de GPU?<span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>Não. É um hash salgado de componentes do sistema, calculado no processo confiável do servidor ou launcher. Não lê GPU, não é infalsificável e muda com reinstalação/troca de hardware. O ban é manual, com motivo, evidência, operador e apelação. Máquina compartilhada pode gerar falso positivo — por isso a revisão humana existe.</p>
+        </details>
+        <details class="reveal">
+          <summary>O teste pede cartão ou cadastro?<span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>Não. Você baixa, roda e usa por 30 dias. O trial é local e selado na máquina. Depois do prazo, o serviço para e mostra a data; a chave reativa sem reinstalar. Apagar o estado local reinicia o teste — esse limite está documentado, não escondido.</p>
+        </details>
+        <details class="reveal">
+          <summary>Vocês banem automaticamente?<span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>Não. O Sentinel sinaliza, encadeia evidência e aplica mitigação no combate. A decisão de banir, expulsar ou revisar continua humana. Ban automático por modelo é como se perde jogador inocente.</p>
+        </details>
+        <details class="reveal">
+          <summary>Meus dados saem do servidor?<span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>Não. Ingestão e dashboard escutam em loopback. Não há telemetria para a Konaet, CDN no dashboard nem analytics no site. A licença é verificada offline. O único dado que sai é o que você envia no checkout (e-mail e comprovante).</p>
+        </details>
+        <details class="reveal">
+          <summary>Como recebo a chave depois do PIX?<span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>O checkout gera um BR Code estático com valor e código de pedido. Após pagar, envie o comprovante no WhatsApp com esse código e o e-mail. A chave é emitida manualmente e enviada ao e-mail informado.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ cta -->
+  <section class="cta-section">
+    <div class="wrap">
+      <div class="cta-card">
+        <div class="cta-art" aria-hidden="true"></div>
+        <div class="cta-copy">
+          <p class="kicker light"><span>10</span> comece hoje</p>
+          <h2>Coloque o escudo<br><em>no seu servidor.</em></h2>
+          <p>Baixe o teste, rode o dashboard e veja o motor trabalhar no modo demo. Se fizer sentido, a chave está a um PIX de distância.</p>
+          <div class="cta-actions">
+            <a class="btn btn-cream magnetic" href="assets/konaet-sentinel-trial.zip" download>Baixar teste de 30 dias</a>
+            <a class="btn btn-ghost-light" href="https://wa.me/message/43CXZJ7NW2FPDO" target="_blank" rel="noopener">Falar no WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="#top" aria-label="Konaet Sentinel">
+          <img src="assets/logo.svg" alt="" width="42" height="42">
+          <span class="brand-word"><b>KONAET</b><small>SENTINEL</small></span>
+        </a>
+        <p>Anti-cheat comportamental com evidência encadeada e escudo para quem joga limpo. Feito no Brasil, roda no seu servidor.</p>
+      </div>
+      <div class="footer-cols">
+        <div><h4>Produto</h4><a href="#produto">Camadas</a><a href="#ia">IA</a><a href="#jogos">Perfis de jogo</a><a href="#escudo">Escudo</a></div>
+        <div><h4>Confiança</h4><a href="#prova">Benchmark</a><a href="legal.html#limitacao">Limites do produto</a><a href="legal.html#privacidade">Privacidade</a><a href="legal.html#termos">Termos</a></div>
+        <div><h4>Suporte</h4><a href="https://wa.me/message/43CXZJ7NW2FPDO" target="_blank" rel="noopener">WhatsApp</a><a href="#faq">Dúvidas</a><a href="#planos">Planos</a><a href="legal.html#reembolso">Reembolso</a></div>
+      </div>
+    </div>
+    <div class="footer-word" aria-hidden="true">SENTINEL</div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Konaet · Konaet Sentinel v1.0.0</span>
+      <span class="footer-mono">loopback · evidência SHA-256 · licença Ed25519</span>
+      <span class="footer-mono">nenhum rastreador neste site</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================================================================ checkout -->
+<div class="modal" id="checkout" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+    <button class="modal-close" id="checkout-close" aria-label="Fechar">×</button>
+    <p class="kicker"><span>PIX</span> pagamento</p>
+    <h3 id="checkout-title">Licença Pro · 30 dias</h3>
+    <div class="order-line"><span id="checkout-desc">1 servidor de produção</span><strong id="checkout-price">R$ 79,00</strong></div>
+    <form id="pix-form">
+      <label for="pix-email">E-mail para receber a chave</label>
+      <input id="pix-email" type="email" autocomplete="email" required placeholder="voce@exemplo.com">
+      <label for="pix-machine">Opcional · código da máquina (licença presa a um servidor)</label>
+      <input id="pix-machine" type="text" autocomplete="off" placeholder="cole o machine id">
+      <div class="alert-box" id="pix-warning" hidden></div>
+      <button class="btn btn-ink wide" type="submit" id="pix-submit">Gerar PIX</button>
+    </form>
+    <div class="pix-result" id="pix-result" hidden>
+      <div class="pix-grid">
+        <div id="pix-qr" aria-label="QR Code do PIX"></div>
+        <div class="pix-side">
+          <span class="label">PIX copia e cola</span>
+          <textarea id="pix-code" readonly></textarea>
+          <button class="btn btn-glass btn-sm" type="button" id="pix-copy">Copiar código</button>
+        </div>
+      </div>
+      <p class="pix-note">Após pagar, envie o comprovante no WhatsApp com o pedido <b id="pix-order">—</b>. A chave é emitida após a confirmação e enviada para <b id="pix-email-out">—</b>.</p>
+      <a class="btn btn-soft wide" id="pix-whatsapp" href="#" target="_blank" rel="noopener">Enviar comprovante no WhatsApp</a>
+    </div>
+    <p class="fine">Ao continuar você aceita os <a href="legal.html#termos">termos</a> e a <a href="legal.html#privacidade">política de privacidade</a>. O PIX é estático: nenhuma cobrança automática é criada.</p>
+  </div>
+</div>
+
+<script src="assets/qrcode.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://7dsol3.github.io/konaet-sentinel/sitemap.xml
