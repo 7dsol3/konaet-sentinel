@@ -257,8 +257,8 @@
 
   /* ------------------------------------------------------------ constelação */
   var FEATURES = [
-    { label: "p90 da velocidade / limite", short: "velocidade", value: 0.82, group: "movimento",
-      desc: "Compara o p90 da velocidade com o máximo legítimo do perfil. Acima de 1,0, o servidor viu um deslocamento que a física não permite." },
+    { label: "velocidade líquida / limite", short: "velocidade", value: 0.82, group: "movimento",
+      desc: "Compara a mediana da velocidade líquida em pares de 0,25–0,6 s com o máximo legítimo do perfil. A mediana ignora atraso de rede em pares isolados; um cheat sustentado desloca todos os pares." },
     { label: "fração no ar", short: "fração no ar", value: 0.34, group: "movimento",
       desc: "Parte do tempo em que o jogador esteve no ar sem veículo, escada ou água. Rajadas longas demais sugerem flutuação." },
     { label: "maior hover (s)", short: "hover", value: 0.18, group: "movimento",
@@ -743,7 +743,7 @@
     if (hits) hits.textContent = shieldOn ? "12" : "0";
     $("#demo-combat").textContent = shieldOn ? "isolado" : "aberto";
     $("#demo-match").textContent = shieldOn ? "segue jogando" : "perdida";
-    $("#demo-command").textContent = shieldOn ? "cancel_hits · quarantine_combat" : "nenhum comando aplicado";
+    $("#demo-command").textContent = shieldOn ? "cancel_hits · conceal_targets" : "nenhum comando aplicado";
     var note = $("#demo-note");
     if (note) {
       note.textContent = shieldOn

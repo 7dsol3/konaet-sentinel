@@ -1,7 +1,7 @@
 {
   "kind": "sentinel-benchmark",
   "version": 1,
-  "generated_at": "2026-10-29T17:56:30+00:00",
+  "generated_at": "2026-10-29T21:26:26+00:00",
   "dataset": {
     "kind": "synthetic",
     "generator": "sentinel.simulator",
@@ -10,7 +10,7 @@
     "sessions": 224,
     "windows": 2240,
     "events": 482562,
-    "build_seconds": 20.04,
+    "build_seconds": 24.54,
     "splits": {
       "train": {
         "sessions": 164,
@@ -25,14 +25,14 @@
         "windows": 300
       }
     },
-    "sha256": "f2140ea7c09fe50532843cdebef322800c333f2d94be785e37ae1739732f7f34"
+    "sha256": "1bdc7abe3f01e903e90798558d7794181aa31e6bc13eb1bf3acad38efa991b53"
   },
   "model": {
-    "path": "C:\\Users\\pc\\Desktop\\Konaet IA\\anti-cheater\\artifacts\\model.json",
-    "sha256": "ed04aaa9c785f100f30727e434bc23a36439c87bfef469d4304bd8db38367051",
+    "path": "artifacts/model.json",
+    "sha256": "fc4c3f7a80eb7261d966d8887ce43e8c685dee15cf6cc9b854738e9578cc9c88",
     "threshold": 0.68,
     "features": [
-      "speed_p90_ratio",
+      "speed_ratio",
       "air_fraction",
       "hover_s",
       "rise_blocks",
@@ -44,7 +44,7 @@
       "aim_jerk",
       "aim_error",
       "targets_10s",
-      "packet_rate",
+      "packet_rate_excess",
       "break_ratio",
       "break_rate",
       "fall_no_damage",
@@ -105,9 +105,9 @@
         "hybrid_hits": 2
       }
     },
-    "window_auc": 0.9993,
+    "window_auc": 0.9996,
     "threshold": 0.68,
-    "threshold_calibrated": 0.67,
+    "threshold_calibrated": 0.62,
     "alert_floor": 0.68,
     "target_fpr": 0.02
   },
@@ -140,7 +140,7 @@
       "gate": "window_auc",
       "op": ">=",
       "target": 0.9,
-      "value": 0.9993,
+      "value": 0.9996,
       "pass": true,
       "description": "AUC do modelo por janela no teste >=0,90"
     },
@@ -167,7 +167,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.86,
-      "ml_max": 0.9751,
+      "ml_max": 0.9701,
       "rule_hit": true,
       "ml_hit": true,
       "hybrid_hit": true
@@ -180,7 +180,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.55,
-      "ml_max": 0.8671,
+      "ml_max": 0.7607,
       "rule_hit": false,
       "ml_hit": true,
       "hybrid_hit": true
@@ -193,7 +193,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.93,
-      "ml_max": 0.9619,
+      "ml_max": 0.961,
       "rule_hit": true,
       "ml_hit": true,
       "hybrid_hit": true
@@ -206,7 +206,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.8958,
+      "ml_max": 0.8844,
       "rule_hit": false,
       "ml_hit": true,
       "hybrid_hit": true
@@ -219,7 +219,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.98,
-      "ml_max": 0.9859,
+      "ml_max": 0.9789,
       "rule_hit": true,
       "ml_hit": true,
       "hybrid_hit": true
@@ -232,7 +232,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.55,
-      "ml_max": 0.8666,
+      "ml_max": 0.8281,
       "rule_hit": false,
       "ml_hit": true,
       "hybrid_hit": true
@@ -245,7 +245,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.95,
-      "ml_max": 0.9609,
+      "ml_max": 0.9647,
       "rule_hit": true,
       "ml_hit": true,
       "hybrid_hit": true
@@ -258,7 +258,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.5776,
-      "ml_max": 0.7866,
+      "ml_max": 0.8218,
       "rule_hit": false,
       "ml_hit": true,
       "hybrid_hit": true
@@ -284,7 +284,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.8221,
+      "ml_max": 0.8206,
       "rule_hit": false,
       "ml_hit": true,
       "hybrid_hit": true
@@ -297,7 +297,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.96,
-      "ml_max": 0.9955,
+      "ml_max": 0.996,
       "rule_hit": true,
       "ml_hit": true,
       "hybrid_hit": true
@@ -310,7 +310,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.9212,
+      "ml_max": 0.911,
       "rule_hit": false,
       "ml_hit": true,
       "hybrid_hit": true
@@ -322,8 +322,8 @@
       "variant": "overt",
       "profile": "ranked",
       "windows": 10,
-      "rule_max": 0.95,
-      "ml_max": 0.973,
+      "rule_max": 0.8844,
+      "ml_max": 0.9833,
       "rule_hit": true,
       "ml_hit": true,
       "hybrid_hit": true
@@ -336,7 +336,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.8208,
+      "ml_max": 0.8227,
       "rule_hit": false,
       "ml_hit": true,
       "hybrid_hit": true
@@ -349,7 +349,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.8631,
-      "ml_max": 0.9924,
+      "ml_max": 0.9929,
       "rule_hit": true,
       "ml_hit": true,
       "hybrid_hit": true
@@ -362,7 +362,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.8066,
+      "ml_max": 0.8115,
       "rule_hit": false,
       "ml_hit": true,
       "hybrid_hit": true
@@ -375,7 +375,7 @@
       "profile": "casual",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.0666,
+      "ml_max": 0.0645,
       "rule_hit": false,
       "ml_hit": false,
       "hybrid_hit": false
@@ -388,7 +388,7 @@
       "profile": "casual",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.1084,
+      "ml_max": 0.1056,
       "rule_hit": false,
       "ml_hit": false,
       "hybrid_hit": false
@@ -401,7 +401,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.4246,
+      "ml_max": 0.3784,
       "rule_hit": false,
       "ml_hit": false,
       "hybrid_hit": false
@@ -414,7 +414,7 @@
       "profile": "casual",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.0499,
+      "ml_max": 0.0317,
       "rule_hit": false,
       "ml_hit": false,
       "hybrid_hit": false
@@ -427,7 +427,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.4801,
+      "ml_max": 0.5007,
       "rule_hit": false,
       "ml_hit": false,
       "hybrid_hit": false
@@ -440,7 +440,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.6207,
+      "ml_max": 0.5505,
       "rule_hit": false,
       "ml_hit": false,
       "hybrid_hit": false
@@ -453,7 +453,7 @@
       "profile": "casual",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.0383,
+      "ml_max": 0.0312,
       "rule_hit": false,
       "ml_hit": false,
       "hybrid_hit": false
@@ -466,7 +466,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.5411,
+      "ml_max": 0.521,
       "rule_hit": false,
       "ml_hit": false,
       "hybrid_hit": false
@@ -479,7 +479,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.1886,
+      "ml_max": 0.215,
       "rule_hit": false,
       "ml_hit": false,
       "hybrid_hit": false
@@ -492,7 +492,7 @@
       "profile": "casual",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.0848,
+      "ml_max": 0.0667,
       "rule_hit": false,
       "ml_hit": false,
       "hybrid_hit": false
@@ -505,7 +505,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.2692,
+      "ml_max": 0.3315,
       "rule_hit": false,
       "ml_hit": false,
       "hybrid_hit": false
@@ -518,7 +518,7 @@
       "profile": "casual",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.0387,
+      "ml_max": 0.0397,
       "rule_hit": false,
       "ml_hit": false,
       "hybrid_hit": false
@@ -531,7 +531,7 @@
       "profile": "casual",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.0596,
+      "ml_max": 0.0526,
       "rule_hit": false,
       "ml_hit": false,
       "hybrid_hit": false
@@ -544,7 +544,7 @@
       "profile": "ranked",
       "windows": 10,
       "rule_max": 0.0,
-      "ml_max": 0.2402,
+      "ml_max": 0.3227,
       "rule_hit": false,
       "ml_hit": false,
       "hybrid_hit": false

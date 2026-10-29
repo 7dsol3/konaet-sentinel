@@ -130,7 +130,7 @@
 
     <div class="wrap hero-measure">
       <div class="measure"><strong>17</strong><span>sinais comportamentais</span></div>
-      <div class="measure"><strong>0,9993</strong><span>AUC por janela*</span></div>
+      <div class="measure"><strong>0,9996</strong><span>AUC por janela*</span></div>
       <div class="measure"><strong>5/5</strong><span>gates no benchmark</span></div>
       <div class="measure"><strong>0</strong><span>banimentos automáticos</span></div>
     </div>
@@ -247,8 +247,8 @@
           </div>
           <div class="ai-readout glass" aria-live="polite">
             <span class="tag-label">leitura do sinal</span>
-            <strong id="ai-signal">p90 da velocidade / limite</strong>
-            <p id="ai-signal-desc">Mede o quanto o p90 da velocidade passa do limite físico do perfil. É o primeiro sinal de speed.</p>
+            <strong id="ai-signal">velocidade líquida / limite</strong>
+            <p id="ai-signal-desc">Compara a mediana da velocidade líquida em pares de 0,25–0,6 s com o máximo legítimo do perfil. A mediana ignora atraso de rede em pares isolados; um cheat sustentado desloca todos os pares.</p>
             <span class="ai-value" id="ai-signal-value">0,82</span>
           </div>
         </div>
@@ -259,7 +259,7 @@
               <span class="tag-label">model card · sintético</span>
               <span class="status-pill"><i></i>calibrado</span>
             </div>
-            <div class="model-auc"><strong>0,9993</strong><span>AUC por janela*</span></div>
+            <div class="model-auc"><strong>0,9996</strong><span>AUC por janela*</span></div>
             <div class="model-facts">
               <div><span>features</span><b>17</b></div>
               <div><span>janela</span><b>30 s</b></div>
@@ -273,7 +273,7 @@
             <div class="contrib-head"><span class="tag-label">exemplo de contribuição</span><span>risco 0,94</span></div>
             <div class="contrib-row"><span>alcance p95</span><span class="bar"><i style="width:92%"></i></span><b>+0,36</b></div>
             <div class="contrib-row"><span>giros de mira</span><span class="bar"><i style="width:70%"></i></span><b>+0,27</b></div>
-            <div class="contrib-row"><span>velocidade p90</span><span class="bar"><i style="width:48%"></i></span><b>+0,18</b></div>
+            <div class="contrib-row"><span>velocidade (mediana)</span><span class="bar"><i style="width:48%"></i></span><b>+0,18</b></div>
             <div class="contrib-row is-negative"><span>CV de cliques</span><span class="bar"><i style="width:26%"></i></span><b>−0,07</b></div>
           </div>
 
@@ -440,7 +440,7 @@
         </div>
         <div class="demo-command">
           <span class="tag-label">comando aplicado no servidor</span>
-          <code id="demo-command">cancel_hits · quarantine_combat</code>
+          <code id="demo-command">cancel_hits · conceal_targets</code>
         </div>
         <p class="demo-note" id="demo-note">Exemplo ilustrativo. O adaptador decide como aplicar cada comando.</p>
       </div>
@@ -455,7 +455,7 @@
         <h2 class="reveal">Prova,<br><em>não promessa.</em></h2>
         <div class="proof-score reveal">
           <span>AUC por janela*</span>
-          <strong>0,9993</strong>
+          <strong>0,9996</strong>
           <small>dataset sintético · 224 sessões · 2.240 janelas</small>
         </div>
       </div>
@@ -467,21 +467,23 @@
             <tr><td>Regras pegam cheats overt</td><td>≥ 0,90</td><td>1,000</td><td><span class="pass">PASS</span></td></tr>
             <tr><td>Híbrido pega cheats stealth</td><td>≥ 0,80</td><td>1,000</td><td><span class="pass">PASS</span></td></tr>
             <tr><td>Falso positivo por sessão legítima</td><td>≤ 0,02</td><td>0,000</td><td><span class="pass">PASS</span></td></tr>
-            <tr><td>AUC do modelo por janela</td><td>≥ 0,90</td><td>0,9993</td><td><span class="pass">PASS</span></td></tr>
+            <tr><td>AUC do modelo por janela</td><td>≥ 0,90</td><td>0,9996</td><td><span class="pass">PASS</span></td></tr>
             <tr><td>Recall híbrido geral</td><td>≥ 0,85</td><td>1,000</td><td><span class="pass">PASS</span></td></tr>
           </tbody>
         </table>
         <div class="proof-side">
           <p class="proof-disclaimer">*Sintético, gerado pelo simulador no mesmo protocolo do jogo. Prova o pipeline e os gates <em>neste</em> dataset; não prova generalização para o seu servidor. A validação em produção usa telemetria rotulada sua.</p>
+          <p class="proof-robust">Robustez em 4 seeds × 9 cenários (perda, duplicata, ruído, atraso, teleporte legítimo): pior falso positivo 0,000, pior recall 1,000, AUC mínima 0,999.</p>
           <a class="quiet-link" href="assets/benchmark.json" target="_blank" rel="noopener">abrir benchmark.json <span aria-hidden="true">↗</span></a>
+          <a class="quiet-link" href="assets/robustness.json" target="_blank" rel="noopener">abrir robustness.json <span aria-hidden="true">↗</span></a>
           <button class="copy-btn" data-copy="train" type="button">copiar comando de reprodução <span>⧉</span></button>
         </div>
       </div>
 
       <div class="proof-live reveal">
         <figure class="proof-shot">
-          <img src="assets/proof-dashboard.gif" alt="Gravação do dashboard local do Konaet Sentinel 1.1.0 com 14 sessões, riscos, evidências e quarentena" width="1000" height="672" loading="lazy">
-          <figcaption>gravação do binário 1.1.0 em modo demo · 14 sessões reais do simulador · nenhuma tela encenada no navegador</figcaption>
+          <img src="assets/proof-dashboard.gif" alt="Gravação do dashboard local do Konaet Sentinel 1.2.0 com sessões, riscos, evidências e quarentena" width="1000" height="672" loading="lazy">
+          <figcaption>gravação do binário 1.2.0 em modo demo · sessões reais do simulador · nenhuma tela encenada no navegador</figcaption>
         </figure>
         <div class="proof-terminal">
           <div class="term-head"><span>konaet-sentinel.exe prove</span><b>PASS 6/6</b></div>
@@ -490,7 +492,7 @@
 [PASS] nenhum ban automático  0 bans
 [PASS] unidade DayZ = m/s     30.00 m/s
 [PASS] perfil CS2/CS:GO       regras
-[PASS] modelo carregado       ed04aaa9...
+[PASS] modelo carregado       fc4c3f7a...
 
 RESULTADO: PASS · 6/6 gates</code></pre>
           <p>O mesmo comando que você roda no seu PC. Dataset sintético, motor real: prova o pipeline e as regras; não prova detecção no seu servidor.</p>
@@ -645,7 +647,7 @@ RESULTADO: PASS · 6/6 gates</code></pre>
     </div>
     <div class="footer-word" aria-hidden="true">SENTINEL</div>
     <div class="footer-bottom">
-      <span>© <span id="year">2026</span> Konaet · Konaet Sentinel v1.1.0</span>
+      <span>© <span id="year">2026</span> Konaet · Konaet Sentinel v1.2.0</span>
       <span class="footer-mono">loopback · evidência SHA-256 · licença Ed25519</span>
       <span class="footer-mono">nenhum rastreador neste site</span>
     </div>
