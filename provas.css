@@ -396,6 +396,7 @@
 
 @media (max-width: 900px) {
   .pv-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pv-metric:last-child { grid-column: 1 / -1; }
   .pv-grid { grid-template-columns: 1fr; }
   .pv-checks { grid-template-columns: 1fr; }
 }
