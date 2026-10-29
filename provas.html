@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Central de provas · Konaet Sentinel</title>
-<meta name="description" content="Benchmark, robustez, auditoria de integridade e comparação de arquitetura com VAC, Vanguard, BattlEye, EAC, FACEIT e Ricochet. Números medidos, limites explícitos e protocolo para repetir.">
+<meta name="description" content="Benchmark, robustez, aprendizado com confirmação humana, auditoria de integridade e comparação de arquitetura com VAC, Vanguard, BattlEye, EAC, FACEIT e Ricochet. Números medidos, limites explícitos e protocolo para repetir.">
 <meta name="theme-color" content="#f4efe6">
 <meta property="og:title" content="Central de provas · Konaet Sentinel">
-<meta property="og:description" content="O que o Sentinel mede, o que não mede e como você confere sozinho. Sem nota de eficácia inventada.">
+<meta property="og:description" content="O que o Sentinel mede, o que não mede e como você confere sozinho. Inclui o protocolo de memória local e o limite fora de distribuição.">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://7dsol3.github.io/konaet-sentinel/assets/cover.jpg">
 <meta property="og:image:width" content="1200">
@@ -38,6 +38,7 @@
       <a href="#protocolo">Protocolo</a>
       <a href="#benchmark">Benchmark</a>
       <a href="#robustez">Robustez</a>
+      <a href="#aprendizado">Aprendizado</a>
       <a href="#comparativo">Comparativo</a>
       <a href="#auditoria">Auditoria</a>
       <a href="#limites">Limites</a>
@@ -59,11 +60,12 @@
     </div>
     <aside class="legal-stamp glass" aria-label="Resumo da prova">
       <dl>
-        <div><dt>documento</dt><dd>v1.2.1</dd></div>
+        <div><dt>documento</dt><dd>v1.3.0</dd></div>
         <div><dt>atualizado</dt><dd>29 out 2026</dd></div>
         <div><dt>dataset</dt><dd>224 sessões</dd></div>
         <div><dt>janelas</dt><dd>2.240</dd></div>
         <div><dt>modelo</dt><dd>fc4c3f7a…</dd></div>
+        <div><dt>memória</dt><dd>sob confirmação</dd></div>
       </dl>
       <div class="stamp-seal">
         <img src="assets/logo.svg" alt="" width="26" height="26">
@@ -93,6 +95,11 @@
       <strong>6/6</strong>
       <small>prove · 0 bans automáticos</small>
     </article>
+    <article class="pv-metric glass">
+      <span>memória confirmada</span>
+      <strong>211 <em>ms</em></strong>
+      <small>mediana · caso novo no motor</small>
+    </article>
   </div>
 
   <div class="legal-layout">
@@ -102,14 +109,15 @@
         <a href="#protocolo" class="is-current"><i>01</i>O que a prova cobre</a>
         <a href="#benchmark"><i>02</i>Benchmark</a>
         <a href="#robustez"><i>03</i>Robustez</a>
-        <a href="#comparativo"><i>04</i>Comparativo por camada</a>
-        <a href="#auditoria"><i>05</i>Auditoria de integridade</a>
-        <a href="#limites"><i>06</i>Limites explícitos</a>
-        <a href="#reproduza"><i>07</i>Reproduza você mesmo</a>
+        <a href="#aprendizado"><i>04</i>Aprendizado confirmado</a>
+        <a href="#comparativo"><i>05</i>Comparativo por camada</a>
+        <a href="#auditoria"><i>06</i>Auditoria de integridade</a>
+        <a href="#limites"><i>07</i>Limites explícitos</a>
+        <a href="#reproduza"><i>08</i>Reproduza você mesmo</a>
       </nav>
       <div class="legal-toc-foot">
         Konaet · Brasil<br>
-        Sentinel 1.2.1
+        Sentinel 1.3.0
         <a href="#documento">voltar ao topo ↑</a>
       </div>
     </aside>
@@ -227,9 +235,63 @@
         </div>
       </section>
 
-      <section class="legal-section" id="comparativo">
+      <section class="legal-section" id="aprendizado">
         <div class="legal-section-head">
           <span class="legal-section-num" aria-hidden="true">04</span>
+          <h2><a class="legal-anchor" href="#aprendizado">Aprendizado confirmado</a></h2>
+        </div>
+        <p>Quando um caso passa pelas regras e pelo modelo, o operador pode revisar a janela e <strong>confirmar</strong> a trapaça. O Sentinel grava o caso em um journal encadeado, extrai protótipos no mesmo espaço de 17 sinais e testa a memória contra âncoras legítimas antes de ativá-la. Se os gates passarem, o motor troca a memória em tempo de execução; se não, nada muda. O JSON completo está em <a href="assets/adaptation.json" target="_blank" rel="noopener">adaptation.json</a>.</p>
+
+        <div class="pv-scroll">
+          <table class="pv-table">
+            <caption>Protocolo de memória · caso confirmado + âncoras legítimas</caption>
+            <thead><tr><th>medição</th><th>métrica</th><th>resultado</th><th>leitura</th></tr></thead>
+            <tbody>
+              <tr><td>Caso confirmado reconhecido</td><td>recall nas janelas do caso</td><td>1,000 · 11/11</td><td><span class="pv-pass">MEDIDO</span></td></tr>
+              <tr><td>Falso positivo nas âncoras</td><td>FPR em 160 janelas legítimas</td><td>0,000</td><td><span class="pv-pass">MEDIDO</span></td></tr>
+              <tr><td>Mesmo estilo, seeds novas</td><td>recall em 3 seeds</td><td>1,000</td><td><span class="pv-pass">MEDIDO</span></td></tr>
+              <tr><td>Fora de distribuição</td><td>recall em autoclick não visto</td><td>0,000</td><td><span class="pv-limit">LIMITE</span></td></tr>
+              <tr><td>Latência de ativação</td><td>mediana de 3 execuções</td><td>211 ms</td><td><span class="pv-pass">MEDIDO</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pv-two">
+          <div class="pv-stat">
+            <span>entradas ativas após o caso</span>
+            <strong>1</strong>
+            <small>máximo de 48 · poda por separabilidade</small>
+          </div>
+          <div class="pv-stat">
+            <span>rollback</span>
+            <strong>1 clique</strong>
+            <small>memória arquivada · journal preservado</small>
+          </div>
+        </div>
+
+        <div class="pv-callout pv-callout-strong">
+          <span class="tag-label">o limite que importa: 0,000 fora de distribuição</span>
+          <p>A memória reconhece o padrão confirmado e variações próximas dele. Um cheat de outra família — no teste, autoclick contra uma memória de velocidade — <strong>não</strong> é reconhecido: recall 0,000. Isso não é falha escondida; é a prova de que o sistema não finge aprender o que não viu. Sem confirmação humana, não há atualização.</p>
+        </div>
+
+        <div class="pv-terminal">
+          <div class="pv-terminal-head"><span>py -3.12 tools/adaptation_proof.py</span><b>DETERMINÍSTICO</b></div>
+<pre><code>caso confirmado     11 janelas · pico alert
+gates               FPR 0.000 · recall 1.000 · separação OK
+memória ativa       1 entrada · sha256 8efa... 
+latência            215 / 205 / 211 ms · mediana 211 ms
+legítimas           160 janelas · pior score 0.0935 · FPR 0.000
+mesmo estilo        3 seeds · recall 1.000
+fora de distribuição autoclick · recall 0.000 · pico 0.3804
+rollback            memória arquivada · journal intacto</code></pre>
+        </div>
+
+        <p class="pv-fine">O protocolo usa o mesmo motor e o mesmo limiar de alerta (0,68) do produto. As âncoras legítimas são geradas por seeds que não participam do caso; as seeds de mesmo estilo verificam repetição do padrão; o autoclick verifica o limite. Um número alto aqui não autoriza dizer que o sistema “aprende qualquer cheat”: ele aprende o que foi confirmado e o que se parece com isso.</p>
+      </section>
+
+      <section class="legal-section" id="comparativo">
+        <div class="legal-section-head">
+          <span class="legal-section-num" aria-hidden="true">05</span>
           <h2><a class="legal-anchor" href="#comparativo">Comparativo por camada</a></h2>
         </div>
         <p>A tabela compara <strong>arquitetura e política publicadas</strong> por cada fornecedor, não eficácia. Um driver em modo kernel vê coisas que a telemetria do servidor não vê; por outro lado, ele roda no PC do jogador e não é o modelo do Sentinel. São trade-offs diferentes, para problemas diferentes.</p>
@@ -369,7 +431,7 @@
 
       <section class="legal-section" id="auditoria">
         <div class="legal-section-head">
-          <span class="legal-section-num" aria-hidden="true">05</span>
+          <span class="legal-section-num" aria-hidden="true">06</span>
           <h2><a class="legal-anchor" href="#auditoria">Auditoria de integridade</a></h2>
         </div>
         <p>O comando <code>audit</code> é uma autoverificação local. Ele não pede internet, não envia dados e não substitui assinatura digital. Ele responde a uma pergunta prática: <strong>os arquivos que estão rodando são os que o benchmark e o pacote dizem que são?</strong></p>
@@ -381,6 +443,7 @@
           <div><span>04</span><p><strong>perfis</strong> — confere os 8 perfis esperados: minecraft, dayz, infestation, pubg, cod, battlefield, cs2 e generic.</p></div>
           <div><span>05</span><p><strong>ledger</strong> — verifica a cadeia SHA-256 da evidência; ausência de ledger de produção ainda não é falha.</p></div>
           <div><span>06</span><p><strong>binário</strong> — no .exe congelado, compara o SHA do executável com o <code>HASHES.txt</code> do pacote.</p></div>
+          <div><span>07</span><p><strong>aprendizado</strong> — confere âncoras, cadeia do journal e se a memória ativa aponta para o mesmo modelo e para um caso existente.</p></div>
         </div>
 
         <div class="pv-terminal">
@@ -391,6 +454,7 @@
 [PASS] perfis     8 perfis: minecraft ... generic
 [PASS] ledger     sem ledger de produção ainda (não é falha)
 [PASS] binário    hash confere com HASHES.txt
+[PASS] aprendizado âncoras + journal OK · memória ativa compatível
 
 relatório  : sha256 e601a3bdd3bd388c... (detecta alteração)
 RESULTADO  : PASS nas verificações críticas</code></pre>
@@ -406,7 +470,7 @@ RESULTADO  : PASS nas verificações críticas</code></pre>
 
       <section class="legal-section" id="limites">
         <div class="legal-section-head">
-          <span class="legal-section-num" aria-hidden="true">06</span>
+          <span class="legal-section-num" aria-hidden="true">07</span>
           <h2><a class="legal-anchor" href="#limites">Limites explícitos</a></h2>
         </div>
         <ul>
@@ -422,7 +486,7 @@ RESULTADO  : PASS nas verificações críticas</code></pre>
 
       <section class="legal-section" id="reproduza">
         <div class="legal-section-head">
-          <span class="legal-section-num" aria-hidden="true">07</span>
+          <span class="legal-section-num" aria-hidden="true">08</span>
           <h2><a class="legal-anchor" href="#reproduza">Reproduza você mesmo</a></h2>
         </div>
         <p>O binário de avaliação inclui o dashboard, o simulador, o benchmark e a auditoria. Baixe o ZIP, confira o SHA-256 publicado no repositório e rode os dois comandos abaixo antes de decidir qualquer coisa.</p>
@@ -453,7 +517,7 @@ RESULTADO  : PASS nas verificações críticas</code></pre>
             <span>04</span>
             <div>
               <h3>Compare com o publicado</h3>
-              <p>Abra <a href="assets/benchmark.json" target="_blank" rel="noopener">benchmark.json</a> e <a href="assets/robustness.json" target="_blank" rel="noopener">robustness.json</a>. O SHA do modelo deve ser o mesmo que aparece no seu audit; o SHA do dataset fica no benchmark.</p>
+              <p>Abra <a href="assets/benchmark.json" target="_blank" rel="noopener">benchmark.json</a>, <a href="assets/robustness.json" target="_blank" rel="noopener">robustness.json</a> e <a href="assets/adaptation.json" target="_blank" rel="noopener">adaptation.json</a>. O SHA do modelo deve ser o mesmo que aparece no seu audit; o SHA do dataset fica no benchmark e o do protótipo, na memória.</p>
             </div>
           </div>
         </div>
@@ -469,10 +533,11 @@ python -m sentinel.cli prove
 python -m sentinel.cli audit
 python -m sentinel.train
 python -m sentinel.robustness --seeds 4
+python tools/adaptation_proof.py
 python -m unittest discover -s tests</code></pre>
         </div>
 
-        <p>A suíte tem <strong>118 testes</strong> e não depende de internet. O treino e a robustez são determinísticos para a seed publicada; pequenas diferenças de tempo de execução não mudam o resultado. Se o seu audit falhar, o relatório aponta qual verificação falhou e por quê.</p>
+        <p>A suíte tem <strong>139 testes</strong> e não depende de internet. O treino e a robustez são determinísticos para a seed publicada; pequenas diferenças de tempo de execução não mudam o resultado. Se o seu audit falhar, o relatório aponta qual verificação falhou e por quê.</p>
 
         <div class="pv-end">
           <div>
@@ -485,7 +550,7 @@ python -m unittest discover -s tests</code></pre>
           </div>
         </div>
 
-        <p class="legal-foot">Konaet · Konaet Sentinel v1.2.1 · central de provas · última atualização em 29 de outubro de 2026. Números do dataset sintético; limites e protocolo NOT_RUN declarados acima.</p>
+        <p class="legal-foot">Konaet · Konaet Sentinel v1.3.0 · central de provas · última atualização em 29 de outubro de 2026. Números do dataset sintético; limites e protocolo NOT_RUN declarados acima.</p>
       </section>
     </article>
   </div>

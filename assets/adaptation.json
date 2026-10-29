@@ -1,0 +1,123 @@
+{
+  "kind": "sentinel-adaptation-proof",
+  "version": "1.3.0",
+  "generated_at": "2026-10-29T22:25:01+00:00",
+  "model": {
+    "sha256": "fc4c3f7a80eb7261d966d8887ce43e8c685dee15cf6cc9b854738e9578cc9c88",
+    "threshold": 0.68,
+    "features": 17
+  },
+  "anchors": {
+    "sha256": "5b4c7a7af9827d858e87a8efc5946687784b9d27e2bccbc21eb4641ec1ca5412",
+    "sessions": 64,
+    "windows": 640
+  },
+  "case": {
+    "id": "CASE-PROOF-20261030",
+    "label": "cheat",
+    "style": "speed/stealth",
+    "profile": "minecraft",
+    "seed": 20261030,
+    "windows": 11,
+    "peak_state": "alert",
+    "replayable": true
+  },
+  "promotion": {
+    "accepted": true,
+    "entries": 1,
+    "memory_sha256": "8efa134453f66da768799df42fdeabf97074da1dc1e4b62cd42c81df0a3af114",
+    "latency_ms": {
+      "runs": [
+        215,
+        207,
+        211
+      ],
+      "median": 211
+    },
+    "gates": {
+      "fpr_anchor": 0.0,
+      "max_legit_anchor": 0.0,
+      "legit_windows": 160,
+      "threshold": 0.68
+    }
+  },
+  "confirmed_windows": {
+    "windows": 11,
+    "hits": 11,
+    "recall": 1.0,
+    "max": 1.0,
+    "median": 1.0
+  },
+  "heldout_legit": {
+    "seeds": [
+      {
+        "seed": 20261031,
+        "windows": 10,
+        "false_positives": 0,
+        "fpr": 0.0,
+        "max": 0.0935
+      },
+      {
+        "seed": 20261032,
+        "windows": 10,
+        "false_positives": 0,
+        "fpr": 0.0,
+        "max": 0.0516
+      },
+      {
+        "seed": 20261033,
+        "windows": 10,
+        "false_positives": 0,
+        "fpr": 0.0,
+        "max": 0.0493
+      }
+    ],
+    "worst_fpr": 0.0
+  },
+  "heldout_same_style": [
+    {
+      "seed": 20261034,
+      "style": "speed/stealth",
+      "windows": 11,
+      "hits": 11,
+      "recall": 1.0,
+      "max": 0.9302,
+      "median": 0.8727
+    },
+    {
+      "seed": 20261035,
+      "style": "speed/stealth",
+      "windows": 11,
+      "hits": 11,
+      "recall": 1.0,
+      "max": 0.9166,
+      "median": 0.8951
+    },
+    {
+      "seed": 20261036,
+      "style": "speed/stealth",
+      "windows": 11,
+      "hits": 11,
+      "recall": 1.0,
+      "max": 0.9287,
+      "median": 0.8805
+    }
+  ],
+  "out_of_distribution": {
+    "style": "autoclick",
+    "seed": 20261040,
+    "windows": 11,
+    "hits": 0,
+    "recall": 0.0,
+    "max": 0.3804,
+    "median": 0.3696
+  },
+  "claim": "A memoria local reconhece o caso confirmado, passa nos gates de falso positivo nas ancoras e foi medida em janelas sinteticas.",
+  "limits": [
+    "Aprendizado nao autonomo: toda promocao exige confirmacao humana explicita.",
+    "Os numeros de falso positivo usam as ancoras sinteticas do simulador, nao o servidor do cliente.",
+    "O estilo fora de distribuicao mede o limite da memoria: ela nao promete detectar variantes nao confirmadas.",
+    "Latencia medida nesta maquina de build; nao e SLA.",
+    "O hash da memoria detecta alteracao acidental; nao e assinatura digital contra quem grava no disco."
+  ]
+}

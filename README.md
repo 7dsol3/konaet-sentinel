@@ -23,7 +23,7 @@ integração oficial: a telemetria precisa vir do servidor que você opera. O
 perfil CS2 é para servidor comunitário/dedicado autorizado, não é VAC e não
 cobre servidor oficial da Valve.
 
-A build 1.2.1 usa `--onedir` (pasta com `_internal/`) e abre o dashboard com
+A build 1.3.0 usa `--onedir` (pasta com `_internal/`) e abre o dashboard com
 duplo clique. Para ver a prova no console:
 
 ```bat
@@ -32,22 +32,27 @@ konaet-sentinel.exe audit
 ```
 
 O `prove` roda as sessões de referência e mostra os gates. O `audit` confere o
-modelo, o benchmark, a robustez, os oito perfis, o ledger e o SHA do executável
-contra o `HASHES.txt` do pacote; `audit --json` gera o relatório com hash
-próprio. Nenhum dos dois envia dados.
+modelo, o benchmark, a robustez, os oito perfis, o ledger, o aprendizado e o SHA
+do executável contra o `HASHES.txt` do pacote; `audit --json` gera o relatório
+com hash próprio. Nenhum dos dois envia dados.
 
-Relatórios públicos do motor: [benchmark.json](assets/benchmark.json) e
-[robustness.json](assets/robustness.json). Ambos são sintéticos; leia o aviso
+A memória de casos só muda com confirmação humana: o operador revisa a janela,
+confirma a trapaça e o dashboard mostra os gates antes de ativar. O sistema não
+aprende sozinho; o limite fora de distribuição está publicado.
+
+Relatórios públicos do motor: [benchmark.json](assets/benchmark.json),
+[robustness.json](assets/robustness.json) e
+[adaptation.json](assets/adaptation.json). Todos são sintéticos; leia o aviso
 dentro dos arquivos. A [central de provas](provas.html) reúne os números, os
 limites e a comparação de arquitetura com outros anti-cheats — sem alegar
 superioridade sem protocolo pareado.
 
 ## Verificar o download
 
-SHA-256 do ZIP publicado (v1.2.1):
+SHA-256 do ZIP publicado (v1.3.0):
 
 ```
-b004f5ac91a6e3e389cb66647457357051b5377be5321c3c4c46d3ae3ca11841
+93069ec00a23c1ba7a2c96a11e7eaabdae69e61fa592415edcd0d23b51a143e3
 ```
 
 O ZIP também contém `HASHES.txt` com o SHA-256 de cada arquivo. O executável
@@ -65,9 +70,12 @@ certutil -hashfile konaet-sentinel-trial.zip SHA256
 Nenhum anti-cheat detecta todos os cheats. O Sentinel mede, evidencia e mitiga;
 o ban continua humano. O ban por máquina é um hash salgado com decisão manual,
 não atestação de GPU. Os números do benchmark são de dataset sintético; a
-robustez a perda, duplicata, ruído, atraso e teleporte também é simulada. Leia
-[legal.html](legal.html) e os documentos do pacote antes de usar em produção.
-O comando `conceal_targets` só vale no servidor que você opera e não é
-invisibilidade no cliente nem integração com anti-cheat oficial.
+robustez a perda, duplicata, ruído, atraso e teleporte também é simulada. A
+memória aprendida reconhece o caso confirmado e vizinhos próximos — no protocolo
+publicado, um cheat de outra família teve recall 0,000 — e não aprende sem
+confirmação humana. Leia [legal.html](legal.html) e os documentos do pacote
+antes de usar em produção. O comando `conceal_targets` só vale no servidor que
+você opera e não é invisibilidade no cliente nem integração com anti-cheat
+oficial.
 
 © 2026 Konaet. Software proprietário.

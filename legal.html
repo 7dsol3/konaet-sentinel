@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Termos, privacidade e licença · Konaet Sentinel</title>
-<meta name="description" content="Termos de uso, privacidade, reembolso, licenças de terceiros e limites do Konaet Sentinel. Documento público da versão 1.2.1.">
+<meta name="description" content="Termos de uso, privacidade, reembolso, licenças de terceiros e limites do Konaet Sentinel. Documento público da versão 1.3.0.">
 <meta name="theme-color" content="#f4efe6">
 <meta property="og:title" content="Termos, privacidade e licença · Konaet Sentinel">
 <meta property="og:description" content="O que o Sentinel faz, o que não faz, como trata dados e quais são os limites do trial e da licença.">
@@ -57,7 +57,7 @@
     </div>
     <aside class="legal-stamp glass" aria-label="Versão do documento">
       <dl>
-        <div><dt>documento</dt><dd>v1.2.1</dd></div>
+        <div><dt>documento</dt><dd>v1.3.0</dd></div>
         <div><dt>atualizado</dt><dd>29 out 2026</dd></div>
         <div><dt>aplica-se a</dt><dd>Sentinel 1.x</dd></div>
         <div><dt>idioma</dt><dd>pt-BR</dd></div>
@@ -83,7 +83,7 @@
       </nav>
       <div class="legal-toc-foot">
         Konaet · Brasil<br>
-        Sentinel 1.2.1
+        Sentinel 1.3.0
         <a href="#documento">voltar ao topo ↑</a>
       </div>
     </aside>
@@ -127,7 +127,7 @@
           <li><strong>Loopback por padrão.</strong> Ingestão TCP e dashboard escutam em <code>127.0.0.1</code>. A telemetria do jogo não é enviada à Konaet.</li>
           <li><strong>Sem rastreadores neste site.</strong> Não há analytics de terceiros, pixels de marketing, CDN de fontes nem cookies de publicidade. As fontes são servidas localmente.</li>
           <li><strong>Licença offline.</strong> A verificação usa uma chave pública Ed25519 embarcada; nenhuma consulta a servidor da Konaet é necessária para o produto funcionar.</li>
-          <li><strong>Evidência fica com o operador.</strong> A cadeia de hashes, os alertas e o registro de banimentos são gravados na instalação do servidor. A Konaet não recebe esses arquivos automaticamente.</li>
+          <li><strong>Evidência fica com o operador.</strong> A cadeia de hashes, os alertas, o journal de casos e a memória aprendida são gravados na instalação do servidor. A Konaet não recebe esses arquivos automaticamente.</li>
           <li><strong>Checkout mínimo.</strong> O e-mail informado e o comprovante são usados apenas para emitir e entregar a chave. O PIX é estático e não cria cobrança automática.</li>
         </ul>
         <p>A impressão de máquina é um hash SHA-256 com sal, não um identificador civil. Ela reconhece a mesma instalação quando o operador decide banir, mas muda ao trocar peças, reinstalar o sistema ou usar uma máquina compartilhada. O registro de banimento é uma decisão humana, com motivo e possibilidade de revisão.</p>
@@ -172,6 +172,7 @@
         <p>O software é fornecido “como está”, com os defeitos que possa ter. A Konaet responde por dolo ou culpa nos termos da lei brasileira, mas não garante operação ininterrupta, compatibilidade com modificações de terceiros nem resultado específico de detecção.</p>
         <p>O trial é local e pode ser reiniciado apagando os arquivos selados; a proteção contra cópia é dissuasória, não absoluta. Um servidor é sempre a autoridade: um agente rodando apenas no PC do jogador não impede que outro cliente trapaceie.</p>
         <p>O executável de avaliação é um binário PyInstaller sem certificado de assinatura digital. SmartScreen ou antivírus podem exibir aviso de reputação. O hash SHA-256 de cada arquivo acompanha o pacote e o hash do ZIP é publicado no site; a decisão de executar um binário não assinado é do usuário. A Konaet não promete instalação silenciosa nem ausência de aviso enquanto não houver certificado de assinatura.</p>
+        <p><strong>Aprendizado sob confirmação.</strong> O Sentinel não aprende sozinho. A memória local só muda quando um operador revisa a janela e confirma o caso; antes de ativar, a memória passa por gates de falso positivo, separabilidade e recall do próprio caso. Ela reconhece o padrão confirmado e variações próximas — no protocolo publicado, um cheat de outra família (autoclick) teve recall 0,000. A memória não substitui validação no seu servidor, não cria ban automático e pode ser revertida a qualquer momento pelo operador.</p>
         <div class="legal-note">
           <span class="tag-label">o que o ban por máquina não é</span>
           <p>Não é atestação de GPU, não é ban automático por IA e não é uma impressão digital forense. É um pseudônimo estável ligado a uma decisão humana, com motivo, data e apelação.</p>
@@ -193,13 +194,14 @@
           <h2><a class="legal-anchor" href="#revisoes">Revisões</a></h2>
         </div>
         <ul>
+          <li><strong>1.3.0 · 29 out 2026</strong> — memória de casos confirmada por humano: journal encadeado, protótipos no mesmo espaço de sinais, gates de falso positivo e separabilidade, ativação em tempo de execução e rollback. Painel de aprendizado no dashboard, verificação <code>aprendizado</code> no <code>audit</code> e protocolo reproduzível em <code>adaptation.json</code>. O texto deixa explícito que o sistema não aprende sem confirmação e que o recall fora de distribuição é 0,000.</li>
           <li><strong>1.2.1 · 29 out 2026</strong> — central de provas pública com benchmark, robustez e comparação de arquitetura; comando <code>audit</code> que confere modelo, artefatos, ledger e o hash do executável contra o <code>HASHES.txt</code>. Nenhuma mudança no motor de detecção.</li>
           <li><strong>1.2.0 · 29 out 2026</strong> — velocidade e mira medidas por deslocamento líquido com mediana robusta a atraso de rede; queda só vira evidência com tempo de ar plausível; memória de dano de queda para reordenação; relatório de robustez em quatro seeds; comando de servidor <code>conceal_targets</code> na quarentena, com limites explícitos.</li>
           <li><strong>1.1.0 · 29 out 2026</strong> — inclusão do perfil CS2/CS:GO para servidor comunitário/dedicado autorizado, unidades físicas por perfil nos laudos e esclarecimento de que o produto não é o VAC nem integra servidor oficial da Valve.</li>
           <li><strong>1.0.0 · 29 out 2026</strong> — primeira publicação dos termos, da política de dados, das licenças de terceiros e dos limites do benchmark sintético.</li>
         </ul>
         <p>Alterações materiais serão publicadas nesta página com nova data e número de versão. A versão aplicável é a que estiver publicada na data da compra ou do uso.</p>
-        <p class="legal-foot">Konaet · Konaet Sentinel v1.2.1 · documento aplicável à série 1.x · última atualização em 29 de outubro de 2026.</p>
+        <p class="legal-foot">Konaet · Konaet Sentinel v1.3.0 · documento aplicável à série 1.x · última atualização em 29 de outubro de 2026.</p>
       </section>
     </article>
   </div>
