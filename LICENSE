@@ -1,0 +1,84 @@
+# Licença Comercial Konaet Sentinel 1.x
+
+Copyright © 2026 Konaet. Todos os direitos reservados.
+
+Este software, seu código-fonte, modelo, documentação e identidade visual são
+proprietários. O uso é permitido somente sob uma licença válida emitida pela
+Konaet, nas condições abaixo.
+
+## 1. Concessão
+
+A Konaet concede ao licenciado um direito **não exclusivo, não transferível e
+revogável** de instalar e executar o Konaet Sentinel pelo período e no escopo
+do plano adquirido:
+
+- **Pro**: uma instalação de servidor;
+- **Network**: até cinco instalações de servidor;
+- **Teste**: uma instalação, por 30 dias corridos a partir da primeira execução,
+  exclusivamente para avaliação.
+
+Cada instalação pode atender os jogadores do servidor licenciado. O escopo é
+contratual: o binário não cria um cadeado técnico por jogador ou por servidor.
+
+## 2. Restrições
+
+Sem autorização escrita da Konaet, o licenciado não pode:
+
+1. copiar, redistribuir, sublicenciar, vender, alugar ou publicar o software,
+   o código-fonte ou uma chave de licença;
+2. remover avisos de autoria, marca ou licença;
+3. usar o software para desenvolver um produto concorrente a partir do seu
+   código ou modelo;
+4. contornar o mecanismo de licença, o selo do trial ou os limites do plano;
+5. usar o produto para assediar, expor ou punir jogadores fora dos canais do
+   servidor, ou para coletar dados além da telemetria que o próprio servidor
+   envia.
+
+A fonte fica em repositório privado. O binário de avaliação é distribuído
+gratuitamente para teste, não para uso comercial após o prazo.
+
+## 3. Dados e privacidade
+
+O produto roda localmente. A telemetria do jogo não é enviada à Konaet. A licença
+é verificada offline. O licenciado é responsável por informar seus jogadores
+sobre o monitoramento e por cumprir a legislação aplicável, incluindo a LGPD.
+
+## 4. Suporte e atualizações
+
+O plano Pro inclui atualizações da versão 1.x enquanto houver licença ativa. O
+plano Network inclui suporte prioritário. Não há renovação automática. A
+disponibilidade de uma versão futura fora da série 1.x pode exigir novo plano.
+
+## 5. Garantias e responsabilidade
+
+O software é fornecido **“no estado em que se encontra”**. A Konaet não garante
+detecção de todos os cheats, operação ininterrupta ou compatibilidade com
+modificações de terceiros. Os resultados publicados vêm de dataset sintético e
+não constituem promessa de desempenho em produção.
+
+Na máxima extensão permitida pela lei brasileira, a responsabilidade total da
+Konaet por danos decorrentes do software limita-se ao valor pago pela licença
+nos 12 meses anteriores. Nada nesta licença exclui responsabilidade por dolo ou
+culpa grave, nem direitos irrenunciáveis do consumidor, incluindo o direito de
+arrependimento do art. 49 do Código de Defesa do Consumidor.
+
+## 6. Rescisão
+
+A licença termina automaticamente com o fim do prazo, com o descumprimento
+destes termos ou com o uso fora do escopo contratado. Após o término, o
+licenciado deve cessar o uso do software. As obrigações de confidencialidade e
+as restrições de propriedade intelectual sobrevivem à rescisão.
+
+## 7. Lei aplicável
+
+Esta licença é regida pelas leis da República Federativa do Brasil. Fica eleito
+o foro do domicílio do licenciado consumidor para controvérsias de consumo.
+
+## 8. Contato
+
+Konaet — suporte, reemissão e assuntos comerciais:
+<https://wa.me/message/43CXZJ7NW2FPDO>
+
+Componentes de terceiros e suas licenças estão em
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Elas prevalecem sobre esta
+licença apenas no que se refere aos respectivos componentes.
