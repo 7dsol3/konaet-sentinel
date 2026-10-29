@@ -17,16 +17,29 @@ e licença. O trial começa na primeira execução e dura 30 dias. Ele não inst
 serviço, não abre porta fora do loopback e não envia telemetria para a Konaet.
 
 Perfis incluídos: Minecraft (referência, IA calibrada), DayZ, Infestation: The
-New Z, PUBG, Call of Duty, Battlefield e genérico. Perfil não é integração
-oficial: a telemetria precisa vir do servidor que você opera.
+New Z, PUBG, Call of Duty, Battlefield, CS2/CS:GO e genérico. Perfil não é
+integração oficial: a telemetria precisa vir do servidor que você opera. O
+perfil CS2 é para servidor comunitário/dedicado autorizado, não é VAC e não
+cobre servidor oficial da Valve.
+
+A build 1.1 usa `--onedir` (pasta com `_internal/`) e abre o dashboard com
+duplo clique. Para ver a prova no console:
+
+```bat
+konaet-sentinel.exe prove
+```
 
 ## Verificar o download
 
-SHA-256 do ZIP publicado:
+SHA-256 do ZIP publicado (v1.1.0):
 
 ```
-6fc2c5c83bb1141b3ed5751fa95ad329667bb3d89a12b9c1da1ad7ddbd7135ab
+88ff60836ec8387e801f1b9d38c884250f8a0484d72e67579873a974c0c97a07
 ```
+
+O ZIP também contém `HASHES.txt` com o SHA-256 de cada arquivo. O executável
+não tem assinatura digital; leia `COMECE_AQUI.txt` antes de interpretar um
+aviso do Windows como detecção.
 
 No Windows:
 

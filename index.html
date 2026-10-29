@@ -92,7 +92,7 @@
 
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow reveal"><span class="eyebrow-dot"></span>anti-cheat comportamental · v1.0</p>
+        <p class="eyebrow reveal"><span class="eyebrow-dot"></span>anti-cheat comportamental · v1.1</p>
         <h1 class="reveal" style="--d:.06s">O jogo limpo<br>volta a ser<br><span class="accent">a regra<svg class="underline" viewBox="0 0 220 22" preserveAspectRatio="none" aria-hidden="true"><path d="M3 14c42-7 108-9 214-4" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg></span>.</h1>
         <p class="lede reveal" style="--d:.12s">Uma IA que enxerga comportamento, um escudo que tira o efeito do cheat da partida e uma evidência que se sustenta. <strong>Sem banir no automático.</strong></p>
         <div class="hero-actions reveal" style="--d:.18s">
@@ -102,7 +102,7 @@
           </a>
           <a class="btn btn-glass" href="#produto">Ver por dentro</a>
         </div>
-        <p class="micro reveal" style="--d:.24s">Sem cartão. Sem cadastro. O teste começa na primeira execução.</p>
+        <p class="micro reveal" style="--d:.24s">Sem cartão. Sem cadastro. O teste começa na primeira execução. O binário não é assinado; o SHA-256 está publicado.</p>
       </div>
 
       <div class="hero-aside">
@@ -288,13 +288,14 @@
     <div class="wrap">
       <div class="section-head">
         <p class="kicker reveal"><span>04</span> qualquer servidor</p>
-        <h2 class="reveal">Um motor.<br><em>Sete físicas.</em></h2>
+        <h2 class="reveal">Um motor.<br><em>Oito físicas.</em></h2>
         <p class="section-lede reveal">O protocolo é o mesmo; o perfil muda o que é fisicamente possível em cada jogo. Escolha um perfil para ver os limites e o que a IA já consegue medir.</p>
       </div>
 
       <div class="game-lab reveal">
         <div class="game-rail" role="tablist" aria-label="Perfis de jogo">
           <button class="game-chip is-active" role="tab" aria-selected="true" data-game="dayz"><span class="mono-mark">DZ</span><span>DayZ</span><i>servidor dedicado</i></button>
+          <button class="game-chip" role="tab" aria-selected="false" data-game="cs2"><span class="mono-mark">CS</span><span>CS2 / CS:GO</span><i>comunidade</i></button>
           <button class="game-chip" role="tab" aria-selected="false" data-game="infestation"><span class="mono-mark">IZ</span><span>Infestation</span><i>servidor privado</i></button>
           <button class="game-chip" role="tab" aria-selected="false" data-game="pubg"><span class="mono-mark">PU</span><span>PUBG</span><i>servidor próprio</i></button>
           <button class="game-chip" role="tab" aria-selected="false" data-game="cod"><span class="mono-mark">CD</span><span>Call of Duty</span><i>servidor próprio</i></button>
@@ -460,7 +461,7 @@
       </div>
 
       <div class="proof-table-wrap reveal">
-        <table class="proof-table">
+        <table class="proof-table" aria-label="Gates do benchmark sintético">
           <thead><tr><th>gate</th><th>meta</th><th>resultado</th><th>estado</th></tr></thead>
           <tbody>
             <tr><td>Regras pegam cheats overt</td><td>≥ 0,90</td><td>1,000</td><td><span class="pass">PASS</span></td></tr>
@@ -474,6 +475,27 @@
           <p class="proof-disclaimer">*Sintético, gerado pelo simulador no mesmo protocolo do jogo. Prova o pipeline e os gates <em>neste</em> dataset; não prova generalização para o seu servidor. A validação em produção usa telemetria rotulada sua.</p>
           <a class="quiet-link" href="assets/benchmark.json" target="_blank" rel="noopener">abrir benchmark.json <span aria-hidden="true">↗</span></a>
           <button class="copy-btn" data-copy="train" type="button">copiar comando de reprodução <span>⧉</span></button>
+        </div>
+      </div>
+
+      <div class="proof-live reveal">
+        <figure class="proof-shot">
+          <img src="assets/proof-dashboard.gif" alt="Gravação do dashboard local do Konaet Sentinel 1.1.0 com 14 sessões, riscos, evidências e quarentena" width="1000" height="672" loading="lazy">
+          <figcaption>gravação do binário 1.1.0 em modo demo · 14 sessões reais do simulador · nenhuma tela encenada no navegador</figcaption>
+        </figure>
+        <div class="proof-terminal">
+          <div class="term-head"><span>konaet-sentinel.exe prove</span><b>PASS 6/6</b></div>
+          <pre><code>[PASS] legítimos sem alerta   6/6
+[PASS] cheats detectados      8/8
+[PASS] nenhum ban automático  0 bans
+[PASS] unidade DayZ = m/s     30.00 m/s
+[PASS] perfil CS2/CS:GO       regras
+[PASS] modelo carregado       ed04aaa9...
+
+RESULTADO: PASS · 6/6 gates</code></pre>
+          <p>O mesmo comando que você roda no seu PC. Dataset sintético, motor real: prova o pipeline e as regras; não prova detecção no seu servidor.</p>
+          <a class="quiet-link" href="assets/konaet-sentinel-trial.zip" download>baixar e rodar a prova <span aria-hidden="true">↓</span></a>
+          <p class="term-note">O .exe não tem assinatura digital. Se o Windows avisar, confira o SHA-256 <a href="https://github.com/7dsol3/konaet-sentinel#verificar-o-download" target="_blank" rel="noopener">publicado no repositório</a> e o <code>HASHES.txt</code> do pacote antes de executar.</p>
         </div>
       </div>
     </div>
@@ -552,7 +574,11 @@
         </details>
         <details class="reveal">
           <summary>Funciona em qualquer jogo?<span class="faq-plus" aria-hidden="true"></span></summary>
-          <p>O motor é agnóstico. Ele consome eventos no protocolo JSONL (movimento, ataque, dano, e opcionalmente quebra/colocação). O adaptador é a única parte específica do jogo. A v1.0 inclui adaptador de referência para Minecraft e um adaptador genérico; para outro título, você escreve a tradução dos eventos do seu servidor.</p>
+          <p>O motor é agnóstico. Ele consome eventos no protocolo JSONL (movimento, ataque, dano, e opcionalmente quebra/colocação). O adaptador é a única parte específica do jogo. A v1.1 inclui adaptador de referência para Minecraft, perfis para oito físicas e um adaptador genérico; para outro título, você escreve a tradução dos eventos do seu servidor.</p>
+        </details>
+        <details class="reveal">
+          <summary>É melhor que o VAC do CS2/CS:GO?<span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>Não afirmamos isso sem medição. O VAC é fechado e não publica recall, falso positivo nem latência por alerta; o Sentinel publica os gates do dataset sintético e o laudo de cada alerta. O que dá para comparar com honestidade é auditabilidade, explicação, operação no seu servidor e ausência de ban automático. Desempenho superior em servidor oficial da Valve não é testável: não existe integração autorizada. O perfil CS2 serve para comunidade ou servidor dedicado com telemetria autorizada — não é VAC, nem substituto dele.</p>
         </details>
         <details class="reveal">
           <summary>Serve para PUBG, COD ou Battlefield oficial?<span class="faq-plus" aria-hidden="true"></span></summary>
@@ -619,7 +645,7 @@
     </div>
     <div class="footer-word" aria-hidden="true">SENTINEL</div>
     <div class="footer-bottom">
-      <span>© <span id="year">2026</span> Konaet · Konaet Sentinel v1.0.0</span>
+      <span>© <span id="year">2026</span> Konaet · Konaet Sentinel v1.1.0</span>
       <span class="footer-mono">loopback · evidência SHA-256 · licença Ed25519</span>
       <span class="footer-mono">nenhum rastreador neste site</span>
     </div>

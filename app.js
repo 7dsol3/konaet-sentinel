@@ -489,6 +489,17 @@
       note: "Distância de arma não é alcance de braço. O perfil desliga a regra de reach e mantém velocidade, vertical e mira — sem inventar comparação com Minecraft.",
       event: { type: "join", player: "p1", name: "Fulano", game: "dayz", machine: "ks1-exemplo", t: 0 }
     },
+    cs2: {
+      name: "Counter-Strike 2 / CS:GO", family: "shooter · servidor comunitário", status: "comunidade / dedicado",
+      speed: 6.4, unit: "m/s", ml: false,
+      rules: [
+        ["velocidade", "6,4 m/s", true], ["vertical", "1,7 m", true],
+        ["mira", "ativa", true], ["alcance", "fora do perfil", false],
+        ["quebra / construção", "não se aplica", false], ["IA comportamental", "regras ativas", true]
+      ],
+      note: "Servidor comunitário ou dedicado com telemetria autorizada. O Sentinel não entra em servidor oficial da Valve e não substitui o VAC. Comparar com o VAC exige telemetria rotulada dos dois lados — sem isso, superioridade seria marketing, não medição.",
+      event: { type: "join", player: "p1", name: "Fulano", game: "cs2", machine: "ks1-exemplo", t: 0 }
+    },
     infestation: {
       name: "Infestation: The New Z", family: "survival · servidor privado", status: "ponte autorizada",
       speed: 6.4, unit: "m/s", ml: false,

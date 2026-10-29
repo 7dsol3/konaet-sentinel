@@ -1827,6 +1827,49 @@ body.menu-open .cursor-dot { opacity: 0 !important; }
 .proof-side { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding-left: 30px; border-left: 1px solid var(--line); }
 .proof-disclaimer { font-size: 10.5px; line-height: 1.65; color: var(--muted); }
 .proof-disclaimer em { font-style: italic; color: var(--ink-soft); }
+.proof-live {
+  display: grid;
+  grid-template-columns: minmax(0, 1.32fr) minmax(300px, 0.68fr);
+  gap: 22px;
+  margin-top: 24px;
+  align-items: stretch;
+}
+.proof-shot {
+  margin: 0;
+  padding: 10px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: linear-gradient(150deg, rgba(255, 253, 247, 0.6), rgba(244, 235, 222, 0.34));
+  box-shadow: 0 30px 70px -55px rgba(58, 44, 28, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.proof-shot img { display: block; width: 100%; height: auto; border-radius: 16px; }
+.proof-shot figcaption {
+  padding: 11px 6px 3px;
+  font-family: var(--mono);
+  font-size: 7.5px;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+}
+.proof-terminal {
+  display: flex;
+  flex-direction: column;
+  padding: 22px 22px 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(80% 60% at 100% 0%, rgba(192, 113, 80, 0.16), transparent 60%),
+    linear-gradient(155deg, #2c2821, #1c1915 78%);
+  box-shadow: 0 30px 60px -42px rgba(28, 25, 21, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  color: #f6f0e5;
+}
+.term-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-bottom: 13px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-family: var(--mono); font-size: 8px; letter-spacing: 0.04em; color: rgba(246, 240, 229, 0.58); }
+.term-head b { font-weight: 500; color: #b8d0aa; }
+.proof-terminal pre { margin: 16px 0 14px; overflow-x: auto; font-family: var(--mono); font-size: 9.5px; line-height: 1.75; color: rgba(246, 240, 229, 0.9); }
+.proof-terminal p { font-size: 10.5px; line-height: 1.65; color: rgba(246, 240, 229, 0.62); }
+.proof-terminal .quiet-link { margin-top: auto; padding-top: 16px; color: #f0c5a8; border-color: rgba(240, 197, 168, 0.24); }
+.proof-terminal .term-note { margin-top: 12px; font-size: 8.5px; line-height: 1.55; color: rgba(246, 240, 229, 0.4); }
+.proof-terminal .term-note a { color: rgba(240, 197, 168, 0.8); text-decoration: underline; text-underline-offset: 2px; }
 
 /* ---------------------------------------------------------- planos */
 .pricing-section {
@@ -2371,6 +2414,10 @@ details[open] .faq-plus { transform: rotate(45deg); opacity: 0.9; }
   .demo-state { padding: 4px 7px; }
   .game-chip > span:nth-child(2) { font-size: 11px; }
   .case-tab { padding-inline: 9px; }
+}
+
+@media (max-width: 1020px) {
+  .proof-live { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
