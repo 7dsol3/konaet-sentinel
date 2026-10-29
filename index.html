@@ -51,6 +51,7 @@
       <a href="#ia" data-nav="ia">IA</a>
       <a href="#jogos" data-nav="jogos">Jogos</a>
       <a href="#banimentos" data-nav="banimentos">Banimentos</a>
+      <a href="#malha" data-nav="malha">Malha</a>
       <a href="#aprendizado" data-nav="aprendizado">Memória</a>
       <a href="#prova" data-nav="prova">Prova</a>
       <a href="#planos" data-nav="planos">Planos</a>
@@ -72,6 +73,7 @@
     <a href="#jogos">Perfis de jogo</a>
     <a href="#banimentos">Banimento por máquina</a>
     <a href="#escudo">Escudo</a>
+    <a href="#malha">Malha</a>
     <a href="#aprendizado">Memória de casos</a>
     <a href="#prova">Benchmark</a>
     <a href="#planos">Planos</a>
@@ -94,9 +96,9 @@
 
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow reveal"><span class="eyebrow-dot"></span>anti-cheat comportamental · v1.3</p>
+        <p class="eyebrow reveal"><span class="eyebrow-dot"></span>anti-cheat comportamental · v1.4</p>
         <h1 class="reveal" style="--d:.06s">O jogo limpo<br>volta a ser<br><span class="accent">a regra<svg class="underline" viewBox="0 0 220 22" preserveAspectRatio="none" aria-hidden="true"><path d="M3 14c42-7 108-9 214-4" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg></span>.</h1>
-        <p class="lede reveal" style="--d:.12s">Uma IA que enxerga comportamento, um escudo que tira o efeito do cheat da partida e uma evidência que se sustenta. <strong>Sem banir no automático.</strong></p>
+        <p class="lede reveal" style="--d:.12s">Uma IA que enxerga comportamento, uma malha que decide o efeito no servidor, um escudo que tira o cheat da partida e uma evidência que se sustenta. <strong>Sem banir no automático.</strong></p>
         <div class="hero-actions reveal" style="--d:.18s">
           <a class="btn btn-ink magnetic" href="assets/konaet-sentinel-trial.zip" download>
             Baixar teste de 30 dias
@@ -133,7 +135,7 @@
     <div class="wrap hero-measure">
       <div class="measure"><strong>17</strong><span>sinais comportamentais</span></div>
       <div class="measure"><strong>0,9996</strong><span>AUC por janela*</span></div>
-      <div class="measure"><strong>5/5</strong><span>gates no benchmark</span></div>
+      <div class="measure"><strong>10/10</strong><span>gates da malha</span></div>
       <div class="measure"><strong>0</strong><span>banimentos automáticos</span></div>
     </div>
   </section>
@@ -161,8 +163,8 @@
     <div class="wrap">
       <div class="section-head">
         <p class="kicker reveal"><span>02</span> o produto</p>
-        <h2 class="reveal">Quatro camadas.<br><em>Uma decisão humana.</em></h2>
-        <p class="section-lede reveal">Regra imediata, IA para o que se esconde, escudo para quem está limpo e memória para o caso que passou. O ban continua sendo do operador — por desenho, não por falta de recurso.</p>
+        <h2 class="reveal">Cinco camadas.<br><em>Uma decisão humana.</em></h2>
+        <p class="section-lede reveal">Regra imediata, IA para o que se esconde, malha para o efeito impossível, escudo para quem está limpo e memória para o caso que passou. O ban continua sendo do operador — por desenho, não por falta de recurso.</p>
       </div>
 
       <div class="layers">
@@ -216,6 +218,19 @@
             <div class="layer-tags"><span>confirmado por pessoa</span><span>gates de falso positivo</span><span>reversível</span></div>
           </div>
           <div class="layer-meta"><span>latência</span><strong>sub-1 s</strong><span>alcance</span><strong>padrão confirmado</strong></div>
+        </article>
+
+        <article class="layer reveal" style="--d:.24s" data-layer>
+          <span class="layer-index">05</span>
+          <span class="layer-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="24" cy="24" r="15" opacity=".45"/><circle cx="24" cy="24" r="7"/><path d="M24 3v8M24 37v8M3 24h8M37 24h8"/><path d="m12 12 5 5M36 12l-5 5M12 36l5-5M36 36l-5-5" opacity=".5"/></svg>
+          </span>
+          <div class="layer-body">
+            <h3>Malha autoritativa</h3>
+            <p>O adaptador pergunta antes de aplicar o dano. Posição aceita, alcance, linha de visão, mira, cadência, teto e dispersão do servidor decidem se o efeito existe. Speedhack, wallbang e alcance impossível viram zero contra o protegido.</p>
+            <div class="layer-tags"><span>servidor decide</span><span>inimigo limpo intacto</span><span>sem invulnerabilidade</span></div>
+          </div>
+          <div class="layer-meta"><span>decisão</span><strong>p95 32,8 µs</strong><span>prova</span><strong>10/10 gates</strong></div>
         </article>
       </div>
 
@@ -462,12 +477,51 @@
     </div>
   </section>
 
+  <!-- ============================================================ malha -->
+  <section class="section-pad mesh-section" id="malha">
+    <div class="wrap mesh-grid">
+      <div class="mesh-copy">
+        <p class="kicker reveal"><span>07</span> malha autoritativa</p>
+        <h2 class="reveal">O cliente pede.<br><em>O servidor decide.</em></h2>
+        <p class="section-lede reveal">O escudo age depois do alerta. A malha age antes do dano: o adaptador pergunta se o disparo pode atingir o jogador protegido e com que dano. A resposta vem da posição que o servidor aceitou — não da posição que o cliente alegou.</p>
+        <ul class="shield-points reveal">
+          <li><span>01</span>Origem fora da posição aceita não causa dano.</li>
+          <li><span>02</span>Alcance, linha de visão, mira, cadência e teto são do servidor.</li>
+          <li><span>03</span>Suspeito perde precisão; inimigo limpo continua acertando.</li>
+        </ul>
+        <p class="micro reveal">Não é invulnerabilidade: 100% do dano limpo foi preservado nos dois lados. Sem o adaptador, a malha não vê o tiro.</p>
+      </div>
+
+      <div class="mesh-demo reveal" style="--d:.1s">
+        <div class="mesh-demo-head">
+          <span class="tag-label">decisão de efeito</span>
+          <span class="learning-pill"><i></i>10/10 gates</span>
+        </div>
+        <div class="mesh-packet">
+          <span>POST /api/authority/shot</span>
+          <code>{"player":"suspeito","target":"limpo","weapon":"rifle","los":false}</code>
+        </div>
+        <div class="mesh-verdict">
+          <div><strong>apply: false</strong><span>damage: 0</span></div>
+          <p>sem linha de visão do servidor · política v1</p>
+        </div>
+        <div class="mesh-figures">
+          <div><span>dano de trapaça</span><b>13,9%</b><em>2.996 → 416</em></div>
+          <div><span>falsos positivos</span><b>0</b><em>em 24 tiros limpos</em></div>
+          <div><span>inimigo limpo</span><b>100%</b><em>dano preservado</em></div>
+          <div><span>p95</span><b>32,8 µs</b><em>por decisão</em></div>
+        </div>
+        <a class="quiet-link" href="provas.html#malha">ver os 11 cenários, gates e limites <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================================================ aprendizado -->
   <section class="section-pad learning-section" id="aprendizado">
     <div class="wrap">
       <div class="learning-head">
         <div>
-          <p class="kicker reveal"><span>07</span> memória operacional</p>
+          <p class="kicker reveal"><span>08</span> memória operacional</p>
           <h2 class="reveal">Passou uma vez.<br><em>Agora vira memória.</em></h2>
         </div>
         <p class="section-lede reveal">Quando você confirma uma trapaça, o Sentinel congela as últimas janelas, valida o padrão contra as âncoras legítimas e coloca a memória no motor em menos de um segundo. Sem reiniciar, sem retreinar o modelo-base e sem ban automático.</p>
@@ -504,7 +558,7 @@
             <span class="learning-pill"><i></i>v1.3</span>
           </div>
           <div class="learning-hero">
-            <strong>211<span>ms</span></strong>
+            <strong>213<span>ms</span></strong>
             <p>mediana de montagem + gravação, em 3 execuções nesta máquina de build.</p>
           </div>
           <div class="learning-figures">
@@ -525,7 +579,7 @@
   <!-- ============================================================ prova -->
   <section class="section-pad proof-section" id="prova">
     <div class="wrap">
-      <p class="kicker reveal"><span>08</span> a prova</p>
+      <p class="kicker reveal"><span>09</span> a prova</p>
       <div class="proof-head">
         <h2 class="reveal">Prova,<br><em>não promessa.</em></h2>
         <div class="proof-score reveal">
@@ -549,10 +603,11 @@
         <div class="proof-side">
           <p class="proof-disclaimer">*Sintético, gerado pelo simulador no mesmo protocolo do jogo. Prova o pipeline e os gates <em>neste</em> dataset; não prova generalização para o seu servidor. A validação em produção usa telemetria rotulada sua.</p>
           <p class="proof-robust">Robustez em 4 seeds × 9 cenários (perda, duplicata, ruído, atraso, teleporte legítimo): pior falso positivo 0,000, pior recall 1,000, AUC mínima 0,9988.</p>
-          <a class="quiet-link" href="provas.html">central de provas: comparativo e auditoria <span aria-hidden="true">→</span></a>
+          <a class="quiet-link" href="provas.html">central de provas: malha, comparativo e auditoria <span aria-hidden="true">→</span></a>
           <a class="quiet-link" href="assets/benchmark.json" target="_blank" rel="noopener">abrir benchmark.json <span aria-hidden="true">↗</span></a>
           <a class="quiet-link" href="assets/robustness.json" target="_blank" rel="noopener">abrir robustness.json <span aria-hidden="true">↗</span></a>
           <a class="quiet-link" href="assets/adaptation.json" target="_blank" rel="noopener">abrir adaptation.json <span aria-hidden="true">↗</span></a>
+          <a class="quiet-link" href="assets/authority.json" target="_blank" rel="noopener">abrir authority.json <span aria-hidden="true">↗</span></a>
           <button class="copy-btn" data-copy="train" type="button">copiar comando de reprodução <span>⧉</span></button>
         </div>
       </div>
@@ -563,15 +618,19 @@
           <figcaption>gravação do binário 1.2.0 em modo demo · sessões reais do simulador · nenhuma tela encenada no navegador</figcaption>
         </figure>
         <div class="proof-terminal">
-          <div class="term-head"><span>konaet-sentinel.exe prove</span><b>PASS 6/6</b></div>
-          <pre><code>[PASS] legítimos sem alerta   6/6
-[PASS] cheats detectados      8/8
-[PASS] nenhum ban automático  0 bans
-[PASS] unidade DayZ = m/s     30.00 m/s
-[PASS] perfil CS2/CS:GO       regras
-[PASS] modelo carregado       fc4c3f7a...
+          <div class="term-head"><span>konaet-sentinel.exe prove</span><b>PASS 10/10</b></div>
+          <pre><code>[PASS] modelo carregado          fc4c3f7a...
+[PASS] legítimos sem alerta      6/6
+[PASS] cheats detectados         8/8
+[PASS] nenhum ban automático     0 bans
+[PASS] unidade DayZ = m/s        30.00 m/s
+[PASS] perfil CS2/CS:GO          regras
+[PASS] malha: impossível negado  linha de visão, mira, dano
+[PASS] malha: teto contido       dano 0
+[PASS] malha: limpo preservado   dano 26
+[PASS] malha: sem falso positivo 0 negações
 
-RESULTADO: PASS · 6/6 gates</code></pre>
+RESULTADO: PASS · 10/10 gates</code></pre>
           <p>O mesmo comando que você roda no seu PC. Dataset sintético, motor real: prova o pipeline e as regras; não prova detecção no seu servidor.</p>
           <a class="quiet-link" href="assets/konaet-sentinel-trial.zip" download>baixar e rodar a prova <span aria-hidden="true">↓</span></a>
           <p class="term-note">O .exe não tem assinatura digital. Se o Windows avisar, confira o SHA-256 <a href="https://github.com/7dsol3/konaet-sentinel#verificar-o-download" target="_blank" rel="noopener">publicado no repositório</a> e o <code>HASHES.txt</code> do pacote antes de executar.</p>
@@ -584,7 +643,7 @@ RESULTADO: PASS · 6/6 gates</code></pre>
   <section class="section-pad pricing-section" id="planos">
     <div class="wrap">
       <div class="section-head center">
-        <p class="kicker reveal"><span>09</span> planos</p>
+        <p class="kicker reveal"><span>10</span> planos</p>
         <h2 class="reveal">Comece pelo teste.<br><em>Pague se fizer sentido.</em></h2>
         <p class="section-lede reveal">Preço em BRL, pagamento por PIX. A licença é emitida após a confirmação e enviada ao e-mail informado.</p>
       </div>
@@ -717,14 +776,14 @@ RESULTADO: PASS · 6/6 gates</code></pre>
         <p>Anti-cheat comportamental com evidência encadeada e escudo para quem joga limpo. Feito no Brasil, roda no seu servidor.</p>
       </div>
       <div class="footer-cols">
-        <div><h4>Produto</h4><a href="#produto">Camadas</a><a href="#ia">IA</a><a href="#jogos">Perfis de jogo</a><a href="#escudo">Escudo</a></div>
+        <div><h4>Produto</h4><a href="#produto">Camadas</a><a href="#ia">IA</a><a href="#jogos">Perfis de jogo</a><a href="#escudo">Escudo</a><a href="#malha">Malha autoritativa</a></div>
         <div><h4>Confiança</h4><a href="#prova">Benchmark</a><a href="provas.html">Central de provas</a><a href="legal.html#limitacao">Limites do produto</a><a href="legal.html#privacidade">Privacidade</a><a href="legal.html#termos">Termos</a></div>
         <div><h4>Suporte</h4><a href="https://wa.me/message/43CXZJ7NW2FPDO" target="_blank" rel="noopener">WhatsApp</a><a href="#faq">Dúvidas</a><a href="#planos">Planos</a><a href="legal.html#reembolso">Reembolso</a></div>
       </div>
     </div>
     <div class="footer-word" aria-hidden="true">SENTINEL</div>
     <div class="footer-bottom">
-      <span>© <span id="year">2026</span> Konaet · Konaet Sentinel v1.3.0</span>
+      <span>© <span id="year">2026</span> Konaet · Konaet Sentinel v1.4.0</span>
       <span class="footer-mono">loopback · evidência SHA-256 · licença Ed25519</span>
       <span class="footer-mono">nenhum rastreador neste site</span>
     </div>

@@ -1,0 +1,298 @@
+{
+  "kind": "sentinel-authority-proof",
+  "version": "1.4.0",
+  "authority_version": 1,
+  "generated_at": "2026-10-29T22:53:26+00:00",
+  "profile": "cs2",
+  "weapon": "rifle",
+  "policy": {
+    "version": 1,
+    "profile": "cs2",
+    "default_weapon": "rifle",
+    "max_speed": 6.4,
+    "origin_tolerance": 2.5,
+    "aim_tolerance_deg": 10.0,
+    "aim_check": true,
+    "cadence_grace": 0.85,
+    "motion_grace": 1.35,
+    "motion_slack": 1.0,
+    "weapons": {
+      "dmr": {
+        "key": "dmr",
+        "label": "fuzil de precisão",
+        "range_m": 120.0,
+        "interval_s": 0.45,
+        "damage": 55.0,
+        "spread_deg": 0.7,
+        "hitbox_m": 0.32
+      },
+      "melee": {
+        "key": "melee",
+        "label": "corpo a corpo",
+        "range_m": 4.8,
+        "interval_s": 0.45,
+        "damage": 7.0,
+        "spread_deg": 4.0,
+        "hitbox_m": 0.55
+      },
+      "rifle": {
+        "key": "rifle",
+        "label": "fuzil",
+        "range_m": 45.0,
+        "interval_s": 0.12,
+        "damage": 26.0,
+        "spread_deg": 1.2,
+        "hitbox_m": 0.32
+      },
+      "smg": {
+        "key": "smg",
+        "label": "submetralhadora",
+        "range_m": 32.0,
+        "interval_s": 0.075,
+        "damage": 18.0,
+        "spread_deg": 2.2,
+        "hitbox_m": 0.32
+      },
+      "sniper": {
+        "key": "sniper",
+        "label": "sniper",
+        "range_m": 300.0,
+        "interval_s": 1.2,
+        "damage": 90.0,
+        "spread_deg": 0.35,
+        "hitbox_m": 0.32
+      }
+    }
+  },
+  "policy_sha256": "1da64c4ad04d7abec87d1b5c704f41da7021d56aee8434dece07067ce6de746d",
+  "dataset": {
+    "kind": "sintético",
+    "seed": 20261029,
+    "secret_sha256": "21eb703898156e53c85897c4f6055ac96c6d094c78c6493dd6a02fe4f1581928",
+    "scenarios": 11,
+    "shots": 110,
+    "disclaimer": "Ataques construídos, não observados. Mede o efeito da própria malha sob entradas sintéticas; não compara com outros anti-cheats e não prova validação em servidor real (NOT_RUN)."
+  },
+  "gates": [
+    {
+      "id": "impossible_zero",
+      "pass": true,
+      "detail": "dano aplicado = 0 em speedhack, teleport, wallbang, reach, combined"
+    },
+    {
+      "id": "damage_cap",
+      "pass": true,
+      "detail": "dano declarado 120 vira 0 contra protegido"
+    },
+    {
+      "id": "cadence",
+      "pass": true,
+      "detail": "15/20 disparos negados; teto 6 disparos em 0.59 s"
+    },
+    {
+      "id": "server_spread",
+      "pass": true,
+      "detail": "acerto caiu para 0.275; probabilidade do servidor a 30 m = 0.259"
+    },
+    {
+      "id": "no_pay_to_win",
+      "pass": true,
+      "detail": "inimigo limpo manteve 100% do dano no alvo protegido"
+    },
+    {
+      "id": "clean_output",
+      "pass": true,
+      "detail": "jogador protegido manteve 100% do dano fora da proteção"
+    },
+    {
+      "id": "no_false_voids",
+      "pass": true,
+      "detail": "0 negações indevidas em 24 tiros limpos"
+    },
+    {
+      "id": "latency",
+      "pass": true,
+      "detail": "p50 16.5 µs · p95 32.8 µs por decisão"
+    },
+    {
+      "id": "deterministic",
+      "pass": true,
+      "detail": "mesma semente e mesmo ataque produzem o mesmo resultado"
+    },
+    {
+      "id": "policy",
+      "pass": true,
+      "detail": "política v1 · sha256 1da64c4ad04d7abe..."
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "speedhack",
+      "label": "cheat",
+      "shots": 4,
+      "before_damage": 104.0,
+      "after_damage": 0.0,
+      "retained_ratio": 0.0,
+      "denied": 4,
+      "duration_s": 0.66,
+      "reasons": {
+        "origin": 4
+      },
+      "details": "posição do cliente saltou 18 m em 0,1 s; tiro declarado de perto"
+    },
+    {
+      "id": "teleport",
+      "label": "cheat",
+      "shots": 4,
+      "before_damage": 104.0,
+      "after_damage": 0.0,
+      "retained_ratio": 0.0,
+      "denied": 4,
+      "duration_s": 0.66,
+      "reasons": {
+        "origin": 4
+      },
+      "details": "salto único de 50 m sem teleporte de servidor"
+    },
+    {
+      "id": "wallbang",
+      "label": "cheat",
+      "shots": 4,
+      "before_damage": 104.0,
+      "after_damage": 0.0,
+      "retained_ratio": 0.0,
+      "denied": 4,
+      "duration_s": 0.66,
+      "reasons": {
+        "line_of_sight": 4
+      },
+      "details": "raycast do servidor diz que não há linha de visão"
+    },
+    {
+      "id": "reach",
+      "label": "cheat",
+      "shots": 4,
+      "before_damage": 104.0,
+      "after_damage": 0.0,
+      "retained_ratio": 0.0,
+      "denied": 4,
+      "duration_s": 0.66,
+      "reasons": {
+        "range": 4
+      },
+      "details": "alvo a 80 m; fuzil configurado no servidor alcança 45 m"
+    },
+    {
+      "id": "rapid_fire",
+      "label": "cheat",
+      "shots": 20,
+      "before_damage": 520.0,
+      "after_damage": 130.0,
+      "retained_ratio": 0.25,
+      "denied": 15,
+      "duration_s": 0.589,
+      "reasons": {
+        "fire_cadence": 15
+      },
+      "details": "20 disparos em 0,59 s; cadência de fuzil é 0,12 s"
+    },
+    {
+      "id": "damage_amp",
+      "label": "cheat",
+      "shots": 4,
+      "before_damage": 480.0,
+      "after_damage": 0.0,
+      "retained_ratio": 0.0,
+      "denied": 4,
+      "duration_s": 0.66,
+      "reasons": {
+        "damage": 4
+      },
+      "details": "cliente declara 120 de dano; teto do fuzil é 26"
+    },
+    {
+      "id": "no_recoil",
+      "label": "cheat",
+      "shots": 40,
+      "before_damage": 1040.0,
+      "after_damage": 286.0,
+      "retained_ratio": 0.275,
+      "denied": 29,
+      "duration_s": 5.07,
+      "reasons": {
+        "server_spread": 29
+      },
+      "details": "40 acertos declarados a 30 m por atirador sinalizado"
+    },
+    {
+      "id": "combined",
+      "label": "cheat",
+      "shots": 6,
+      "before_damage": 540.0,
+      "after_damage": 0.0,
+      "retained_ratio": 0.0,
+      "denied": 6,
+      "duration_s": 0.2,
+      "reasons": {
+        "damage": 6,
+        "fire_cadence": 4,
+        "line_of_sight": 6,
+        "origin": 6
+      },
+      "details": "salto + cadência + dano + sem LOS no mesmo ataque"
+    },
+    {
+      "id": "legit_enemy",
+      "label": "legit",
+      "shots": 8,
+      "before_damage": 208.0,
+      "after_damage": 208.0,
+      "retained_ratio": 1.0,
+      "denied": 0,
+      "duration_s": 0.0,
+      "reasons": {},
+      "details": "inimigo limpo, regras respeitadas, alvo protegido"
+    },
+    {
+      "id": "protected_output",
+      "label": "legit",
+      "shots": 8,
+      "before_damage": 208.0,
+      "after_damage": 208.0,
+      "retained_ratio": 1.0,
+      "denied": 0,
+      "duration_s": 0.0,
+      "reasons": {},
+      "details": "jogador protegido atirando em alvo não protegido"
+    },
+    {
+      "id": "clean_duel",
+      "label": "legit",
+      "shots": 8,
+      "before_damage": 208.0,
+      "after_damage": 208.0,
+      "retained_ratio": 1.0,
+      "denied": 0,
+      "duration_s": 0.0,
+      "reasons": {},
+      "details": "dois jogadores limpos trocando fogo fora da proteção"
+    }
+  ],
+  "metrics": {
+    "cheat_damage_before": 2996.0,
+    "cheat_damage_after": 416.0,
+    "cheat_damage_retained": 0.1389,
+    "false_voids": 0,
+    "legit_shots": 24,
+    "server_spread_probability_30m": 0.2594,
+    "no_recoil_hit_rate_before": 1.0,
+    "no_recoil_hit_rate_after": 0.275,
+    "latency_us": {
+      "p50": 16.5,
+      "p95": 32.8,
+      "max": 116.7
+    }
+  },
+  "pass": true,
+  "note": "Só vale com o adaptador no servidor que aplica o efeito. O cliente propõe; o servidor decide. Não é invulnerabilidade: inimigo limpo continua acertando o protegido. Não é detecção universal: cheat que produz entradas fisicamente válidas é assunto da camada comportamental."
+}

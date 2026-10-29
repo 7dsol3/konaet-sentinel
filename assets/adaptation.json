@@ -1,7 +1,7 @@
 {
   "kind": "sentinel-adaptation-proof",
-  "version": "1.3.0",
-  "generated_at": "2026-10-29T22:25:01+00:00",
+  "version": "1.4.0",
+  "generated_at": "2026-10-29T22:53:40+00:00",
   "model": {
     "sha256": "fc4c3f7a80eb7261d966d8887ce43e8c685dee15cf6cc9b854738e9578cc9c88",
     "threshold": 0.68,
@@ -25,14 +25,14 @@
   "promotion": {
     "accepted": true,
     "entries": 1,
-    "memory_sha256": "8efa134453f66da768799df42fdeabf97074da1dc1e4b62cd42c81df0a3af114",
+    "memory_sha256": "20ac4da8f8a651dbb2525feaedb8af4d8d4856d3aee45dea943720c911a15cbf",
     "latency_ms": {
       "runs": [
-        215,
-        207,
-        211
+        217,
+        213,
+        205
       ],
-      "median": 211
+      "median": 213
     },
     "gates": {
       "fpr_anchor": 0.0,

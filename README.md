@@ -23,7 +23,7 @@ integração oficial: a telemetria precisa vir do servidor que você opera. O
 perfil CS2 é para servidor comunitário/dedicado autorizado, não é VAC e não
 cobre servidor oficial da Valve.
 
-A build 1.3.0 usa `--onedir` (pasta com `_internal/`) e abre o dashboard com
+A build 1.4.0 usa `--onedir` (pasta com `_internal/`) e abre o dashboard com
 duplo clique. Para ver a prova no console:
 
 ```bat
@@ -31,28 +31,38 @@ konaet-sentinel.exe prove
 konaet-sentinel.exe audit
 ```
 
-O `prove` roda as sessões de referência e mostra os gates. O `audit` confere o
-modelo, o benchmark, a robustez, os oito perfis, o ledger, o aprendizado e o SHA
-do executável contra o `HASHES.txt` do pacote; `audit --json` gera o relatório
-com hash próprio. Nenhum dos dois envia dados.
+O `prove` roda as sessões de referência e mostra os dez gates, incluindo quatro
+checagens da malha. O `audit` confere o modelo, o benchmark, a robustez, os oito
+perfis, o ledger, o aprendizado, a malha e o SHA do executável contra o
+`HASHES.txt` do pacote; `audit --json` gera o relatório com hash próprio.
+Nenhum dos dois envia dados.
+
+A malha autoritativa de efeito é a novidade da 1.4.0: quando o servidor chama a
+decisão antes de aplicar dano, a posição aceita, o alcance, a linha de visão, a
+geometria de mira, a cadência, o teto de dano e a dispersão do servidor definem
+se o efeito passa. Ela não torna o protegido invulnerável, não remove o cheat do
+PC do atacante e só funciona com adaptador no servidor que você opera. A prova
+publicada é sintética (11 cenários, 110 disparos) e a validação pareada em
+servidor real está marcada como `NOT_RUN`.
 
 A memória de casos só muda com confirmação humana: o operador revisa a janela,
 confirma a trapaça e o dashboard mostra os gates antes de ativar. O sistema não
 aprende sozinho; o limite fora de distribuição está publicado.
 
 Relatórios públicos do motor: [benchmark.json](assets/benchmark.json),
-[robustness.json](assets/robustness.json) e
-[adaptation.json](assets/adaptation.json). Todos são sintéticos; leia o aviso
+[robustness.json](assets/robustness.json),
+[adaptation.json](assets/adaptation.json) e
+[authority.json](assets/authority.json). Todos são sintéticos; leia o aviso
 dentro dos arquivos. A [central de provas](provas.html) reúne os números, os
 limites e a comparação de arquitetura com outros anti-cheats — sem alegar
 superioridade sem protocolo pareado.
 
 ## Verificar o download
 
-SHA-256 do ZIP publicado (v1.3.0):
+SHA-256 do ZIP publicado (v1.4.0):
 
 ```
-93069ec00a23c1ba7a2c96a11e7eaabdae69e61fa592415edcd0d23b51a143e3
+05040a585852d46b6362da1462fa1d901c4f2b0e63fdbac965a0578903838b7e
 ```
 
 O ZIP também contém `HASHES.txt` com o SHA-256 de cada arquivo. O executável

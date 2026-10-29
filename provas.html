@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Central de provas · Konaet Sentinel</title>
-<meta name="description" content="Benchmark, robustez, aprendizado com confirmação humana, auditoria de integridade e comparação de arquitetura com VAC, Vanguard, BattlEye, EAC, FACEIT e Ricochet. Números medidos, limites explícitos e protocolo para repetir.">
+<meta name="description" content="Benchmark, malha autoritativa de efeito, robustez, aprendizado com confirmação humana, auditoria de integridade e comparação de arquitetura com VAC, Vanguard, BattlEye, EAC, FACEIT e Ricochet. Números medidos, limites explícitos e protocolo para repetir.">
 <meta name="theme-color" content="#f4efe6">
 <meta property="og:title" content="Central de provas · Konaet Sentinel">
-<meta property="og:description" content="O que o Sentinel mede, o que não mede e como você confere sozinho. Inclui o protocolo de memória local e o limite fora de distribuição.">
+<meta property="og:description" content="O que o Sentinel mede, o que não mede e como você confere sozinho. Inclui a prova da malha autoritativa, o protocolo de memória local e o limite fora de distribuição.">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://7dsol3.github.io/konaet-sentinel/assets/cover.jpg">
 <meta property="og:image:width" content="1200">
@@ -39,6 +39,7 @@
       <a href="#benchmark">Benchmark</a>
       <a href="#robustez">Robustez</a>
       <a href="#aprendizado">Aprendizado</a>
+      <a href="#malha">Malha</a>
       <a href="#comparativo">Comparativo</a>
       <a href="#auditoria">Auditoria</a>
       <a href="#limites">Limites</a>
@@ -60,11 +61,12 @@
     </div>
     <aside class="legal-stamp glass" aria-label="Resumo da prova">
       <dl>
-        <div><dt>documento</dt><dd>v1.3.0</dd></div>
+        <div><dt>documento</dt><dd>v1.4.0</dd></div>
         <div><dt>atualizado</dt><dd>29 out 2026</dd></div>
         <div><dt>dataset</dt><dd>224 sessões</dd></div>
         <div><dt>janelas</dt><dd>2.240</dd></div>
         <div><dt>modelo</dt><dd>fc4c3f7a…</dd></div>
+        <div><dt>malha</dt><dd>10/10 gates</dd></div>
         <div><dt>memória</dt><dd>sob confirmação</dd></div>
       </dl>
       <div class="stamp-seal">
@@ -92,12 +94,17 @@
     </article>
     <article class="pv-metric glass">
       <span>prova do binário</span>
-      <strong>6/6</strong>
+      <strong>10/10</strong>
       <small>prove · 0 bans automáticos</small>
     </article>
     <article class="pv-metric glass">
+      <span>dano de cheat retido</span>
+      <strong>13,9<em>%</em></strong>
+      <small>2.996 → 416 · malha autoritativa</small>
+    </article>
+    <article class="pv-metric glass">
       <span>memória confirmada</span>
-      <strong>211 <em>ms</em></strong>
+      <strong>213 <em>ms</em></strong>
       <small>mediana · caso novo no motor</small>
     </article>
   </div>
@@ -110,14 +117,15 @@
         <a href="#benchmark"><i>02</i>Benchmark</a>
         <a href="#robustez"><i>03</i>Robustez</a>
         <a href="#aprendizado"><i>04</i>Aprendizado confirmado</a>
-        <a href="#comparativo"><i>05</i>Comparativo por camada</a>
-        <a href="#auditoria"><i>06</i>Auditoria de integridade</a>
-        <a href="#limites"><i>07</i>Limites explícitos</a>
-        <a href="#reproduza"><i>08</i>Reproduza você mesmo</a>
+        <a href="#malha"><i>05</i>Malha autoritativa</a>
+        <a href="#comparativo"><i>06</i>Comparativo por camada</a>
+        <a href="#auditoria"><i>07</i>Auditoria de integridade</a>
+        <a href="#limites"><i>08</i>Limites explícitos</a>
+        <a href="#reproduza"><i>09</i>Reproduza você mesmo</a>
       </nav>
       <div class="legal-toc-foot">
         Konaet · Brasil<br>
-        Sentinel 1.3.0
+        Sentinel 1.4.0
         <a href="#documento">voltar ao topo ↑</a>
       </div>
     </aside>
@@ -136,7 +144,7 @@
           <span class="legal-section-num" aria-hidden="true">01</span>
           <h2><a class="legal-anchor" href="#protocolo">O que a prova cobre</a></h2>
         </div>
-        <p>Há duas coisas diferentes nesta página: o <strong>benchmark</strong>, que mede o motor em dados sintéticos gerados pelo simulador incluído, e a <strong>auditoria</strong>, que confere no seu computador se os artefatos e o executável são os que deveriam ser. Nenhuma das duas prova detecção no seu servidor. As duas provam que o pipeline é o mesmo que publicamos e que ele passa nos próprios gates.</p>
+        <p>Há três coisas diferentes nesta página: o <strong>benchmark</strong>, que mede o motor em dados sintéticos gerados pelo simulador incluído; a <strong>malha autoritativa</strong>, que mede a decisão de efeito contra um alvo protegido sob ataques construídos; e a <strong>auditoria</strong>, que confere no seu computador se os artefatos e o executável são os que deveriam ser. Nenhuma das três prova detecção no seu servidor. As três provam que o pipeline é o mesmo que publicamos e que ele passa nos próprios gates.</p>
 
         <div class="pv-grid">
           <article class="pv-card">
@@ -158,6 +166,11 @@
             <span class="pv-num">04 · contrato</span>
             <h3>0 bans automáticos</h3>
             <p>O motor sinaliza, explica e registra. Quem decide punir é o operador. O escudo pode mitigar o efeito do cheat em partida, mas não remove o cheat do PC de ninguém.</p>
+          </article>
+          <article class="pv-card">
+            <span class="pv-num">05 · efeito</span>
+            <h3>O servidor decide o dano</h3>
+            <p>Origem, alcance, linha de visão, mira, cadência, teto e dispersão são conferidos no servidor antes de aplicar o efeito contra um alvo protegido. O cliente propõe; a malha decide.</p>
           </article>
         </div>
       </section>
@@ -251,7 +264,7 @@
               <tr><td>Falso positivo nas âncoras</td><td>FPR em 160 janelas legítimas</td><td>0,000</td><td><span class="pv-pass">MEDIDO</span></td></tr>
               <tr><td>Mesmo estilo, seeds novas</td><td>recall em 3 seeds</td><td>1,000</td><td><span class="pv-pass">MEDIDO</span></td></tr>
               <tr><td>Fora de distribuição</td><td>recall em autoclick não visto</td><td>0,000</td><td><span class="pv-limit">LIMITE</span></td></tr>
-              <tr><td>Latência de ativação</td><td>mediana de 3 execuções</td><td>211 ms</td><td><span class="pv-pass">MEDIDO</span></td></tr>
+              <tr><td>Latência de ativação</td><td>mediana de 3 execuções</td><td>213 ms</td><td><span class="pv-pass">MEDIDO</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -279,7 +292,7 @@
 <pre><code>caso confirmado     11 janelas · pico alert
 gates               FPR 0.000 · recall 1.000 · separação OK
 memória ativa       1 entrada · sha256 8efa... 
-latência            215 / 205 / 211 ms · mediana 211 ms
+latência            217 / 213 / 205 ms · mediana 213 ms
 legítimas           160 janelas · pior score 0.0935 · FPR 0.000
 mesmo estilo        3 seeds · recall 1.000
 fora de distribuição autoclick · recall 0.000 · pico 0.3804
@@ -289,9 +302,70 @@ rollback            memória arquivada · journal intacto</code></pre>
         <p class="pv-fine">O protocolo usa o mesmo motor e o mesmo limiar de alerta (0,68) do produto. As âncoras legítimas são geradas por seeds que não participam do caso; as seeds de mesmo estilo verificam repetição do padrão; o autoclick verifica o limite. Um número alto aqui não autoriza dizer que o sistema “aprende qualquer cheat”: ele aprende o que foi confirmado e o que se parece com isso.</p>
       </section>
 
-      <section class="legal-section" id="comparativo">
+      <section class="legal-section" id="malha">
         <div class="legal-section-head">
           <span class="legal-section-num" aria-hidden="true">05</span>
+          <h2><a class="legal-anchor" href="#malha">Malha autoritativa</a></h2>
+        </div>
+        <p>A malha decide <strong>efeito</strong>, não apenas alerta. O cliente propõe o disparo; o servidor confere origem, alcance, linha de visão, geometria da mira, cadência, teto de dano e dispersão com segredo próprio antes de aplicar o dano. Se o efeito é fisicamente impossível, ele vira zero contra o alvo protegido — sem tornar o alvo invulnerável e sem alterar o dano que o jogador protegido causa.</p>
+
+        <div class="pv-scroll">
+          <table class="pv-table">
+            <caption>10 gates da malha · 11 cenários sintéticos · 110 disparos · política v1</caption>
+            <thead><tr><th>gate</th><th>medição</th><th>resultado</th></tr></thead>
+            <tbody>
+              <tr><td>Efeito impossível</td><td>speedhack, teleporte, wallbang, reach e combo</td><td>0 de dano aplicado nos cinco cenários</td></tr>
+              <tr><td>Teto de dano</td><td>declarado 120 contra fuzil de 26</td><td>0 aplicado acima do teto</td></tr>
+              <tr><td>Cadência</td><td>21 disparos em 0,59 s · teto de 6</td><td>15 negados · 6 aplicados</td></tr>
+              <tr><td>Dispersão do servidor</td><td>script sem recuo a 30 m</td><td>acerto 0,275 · esperado 0,259</td></tr>
+              <tr><td>Sem pay-to-win</td><td>inimigo limpo mira o protegido</td><td>100% do dano limpo mantido</td></tr>
+              <tr><td>Saída do protegido</td><td>protegido atira em alvo comum</td><td>100% do dano mantido</td></tr>
+              <tr><td>Falsos positivos</td><td>24 tiros limpos de ambos os lados</td><td>0 negações indevidas</td></tr>
+              <tr><td>Latência da decisão</td><td>p50 · p95 · máximo</td><td>16,5 · 32,8 · 116,7 µs</td></tr>
+              <tr><td>Determinismo</td><td>mesma seed e mesmo ataque</td><td>mesmo resultado</td></tr>
+              <tr><td>Política</td><td>SHA-256 do perfil publicado</td><td><code>1da64c4a…</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pv-two">
+          <div class="pv-stat">
+            <span>dano de trapaça retido</span>
+            <strong>13,9%</strong>
+            <small>2.996 → 416 nos 11 cenários</small>
+          </div>
+          <div class="pv-stat">
+            <span>negações indevidas</span>
+            <strong>0</strong>
+            <small>24 tiros limpos · 0 falsos positivos</small>
+          </div>
+        </div>
+
+        <div class="pv-terminal">
+          <div class="pv-terminal-head"><span>py -3.12 tools/authority_proof.py</span><b>10/10 PASS</b></div>
+<pre><code>cenários            11 sintéticos · 110 disparos · política 1da64c4a…
+dano de trapaça     2.996 → 416 · retido 13,9%
+violação dura       0 de dano em 5 cenários
+cadência            15/20 negados · teto 6 em 0,59 s
+spread do servidor  no-recoil 0,275 · esperado 0,259
+fairness            inimigo limpo 100% · saída do protegido 100%
+falsos positivos    0 em 24 tiros limpos
+latência            p50 16,5 µs · p95 32,8 µs · máx 116,7 µs
+determinismo        mesma seed · mesmo resultado
+política            sha256 1da64c4ad04d7abe…</code></pre>
+        </div>
+
+        <div class="pv-callout pv-callout-strong">
+          <span class="tag-label">o que a malha não é</span>
+          <p>Não é invulnerabilidade: um inimigo limpo continua acertando o jogador protegido — no teste, 100% do dano dele passou. Não é detecção: um cheat que produz entradas fisicamente válidas continua sendo problema da camada comportamental. Não funciona sozinha: o servidor precisa chamar a decisão de forma síncrona; sem a chamada, nada é negado. E não há validação em servidor real publicada — o protocolo é sintético e esse limite está marcado como <strong>NOT_RUN</strong>.</p>
+        </div>
+
+        <p class="pv-fine">O JSON completo está em <a href="assets/authority.json" target="_blank" rel="noopener">authority.json</a>. A lista de jogadores protegidos é operacional, não criptográfica: quem controla o servidor pode alterá-la. A malha reduz o efeito de violações geométricas contra o alvo protegido; ela não remove o cheat do PC do atacante, não substitui o anti-cheat do jogo e não promete detectar cheat com entradas fisicamente válidas.</p>
+      </section>
+
+      <section class="legal-section" id="comparativo">
+        <div class="legal-section-head">
+          <span class="legal-section-num" aria-hidden="true">06</span>
           <h2><a class="legal-anchor" href="#comparativo">Comparativo por camada</a></h2>
         </div>
         <p>A tabela compara <strong>arquitetura e política publicadas</strong> por cada fornecedor, não eficácia. Um driver em modo kernel vê coisas que a telemetria do servidor não vê; por outro lado, ele roda no PC do jogador e não é o modelo do Sentinel. São trade-offs diferentes, para problemas diferentes.</p>
@@ -384,7 +458,7 @@ rollback            memória arquivada · journal intacto</code></pre>
               </tr>
               <tr>
                 <th>mitigação em partida</th>
-                <td class="pv-us">escudo em partida</td>
+                <td class="pv-us">escudo + malha de efeito</td>
                 <td>não</td>
                 <td>não documentada</td>
                 <td>depende do jogo</td>
@@ -418,8 +492,8 @@ rollback            memória arquivada · journal intacto</code></pre>
         <div class="pv-two pv-two-cards">
           <div class="pv-card">
             <span class="pv-num">onde somos diferentes</span>
-            <h3>Controle e evidência na sua mão</h3>
-            <p>Regra ajustável, laudo por sinal, ledger local, decisão humana e escudo em partida. O operador vê por que o alerta subiu e pode rever o caso sem depender de suporte externo.</p>
+            <h3>Controle, evidência e efeito</h3>
+            <p>Regra ajustável, laudo por sinal, ledger local, decisão humana, escudo em partida e malha que nega efeito impossível contra o alvo protegido. O operador vê por que o alerta subiu e pode rever o caso sem depender de suporte externo.</p>
           </div>
           <div class="pv-card">
             <span class="pv-num">onde eles são mais fortes</span>
@@ -431,7 +505,7 @@ rollback            memória arquivada · journal intacto</code></pre>
 
       <section class="legal-section" id="auditoria">
         <div class="legal-section-head">
-          <span class="legal-section-num" aria-hidden="true">06</span>
+          <span class="legal-section-num" aria-hidden="true">07</span>
           <h2><a class="legal-anchor" href="#auditoria">Auditoria de integridade</a></h2>
         </div>
         <p>O comando <code>audit</code> é uma autoverificação local. Ele não pede internet, não envia dados e não substitui assinatura digital. Ele responde a uma pergunta prática: <strong>os arquivos que estão rodando são os que o benchmark e o pacote dizem que são?</strong></p>
@@ -441,9 +515,10 @@ rollback            memória arquivada · journal intacto</code></pre>
           <div><span>02</span><p><strong>benchmark</strong> — exige PASS, 5 gates e o mesmo SHA de modelo gravado no relatório.</p></div>
           <div><span>03</span><p><strong>robustez</strong> — exige versão 2, pelo menos 2 seeds, 2 cenários, todos limpos e o mesmo SHA.</p></div>
           <div><span>04</span><p><strong>perfis</strong> — confere os 8 perfis esperados: minecraft, dayz, infestation, pubg, cod, battlefield, cs2 e generic.</p></div>
-          <div><span>05</span><p><strong>ledger</strong> — verifica a cadeia SHA-256 da evidência; ausência de ledger de produção ainda não é falha.</p></div>
-          <div><span>06</span><p><strong>binário</strong> — no .exe congelado, compara o SHA do executável com o <code>HASHES.txt</code> do pacote.</p></div>
-          <div><span>07</span><p><strong>aprendizado</strong> — confere âncoras, cadeia do journal e se a memória ativa aponta para o mesmo modelo e para um caso existente.</p></div>
+          <div><span>05</span><p><strong>aprendizado</strong> — confere âncoras, cadeia do journal e se a memória ativa aponta para o mesmo modelo e para um caso existente.</p></div>
+          <div><span>06</span><p><strong>malha</strong> — exige 10/10 gates, 0 falsos positivos, versão da política e o mesmo SHA registrado no artefato.</p></div>
+          <div><span>07</span><p><strong>ledger</strong> — verifica a cadeia SHA-256 da evidência; ausência de ledger de produção ainda não é falha.</p></div>
+          <div><span>08</span><p><strong>binário</strong> — no .exe congelado, compara o SHA do executável com o <code>HASHES.txt</code> do pacote.</p></div>
         </div>
 
         <div class="pv-terminal">
@@ -452,11 +527,12 @@ rollback            memória arquivada · journal intacto</code></pre>
 [PASS] benchmark  5/5 gates · AUC 0.9996 · modelo confere
 [PASS] robustez   4 seeds × 9 cenários · pior FPR 0.000
 [PASS] perfis     8 perfis: minecraft ... generic
+[PASS] aprendizado âncoras 640 janelas · sem ajuste local
+[PASS] malha      10/10 gates · 0 falsos positivos · p95 32.8 µs
 [PASS] ledger     sem ledger de produção ainda (não é falha)
 [PASS] binário    hash confere com HASHES.txt
-[PASS] aprendizado âncoras + journal OK · memória ativa compatível
 
-relatório  : sha256 e601a3bdd3bd388c... (detecta alteração)
+relatório  : sha256 ... (detecta alteração; não é assinatura)
 RESULTADO  : PASS nas verificações críticas</code></pre>
         </div>
 
@@ -470,7 +546,7 @@ RESULTADO  : PASS nas verificações críticas</code></pre>
 
       <section class="legal-section" id="limites">
         <div class="legal-section-head">
-          <span class="legal-section-num" aria-hidden="true">07</span>
+          <span class="legal-section-num" aria-hidden="true">08</span>
           <h2><a class="legal-anchor" href="#limites">Limites explícitos</a></h2>
         </div>
         <ul>
@@ -479,6 +555,8 @@ RESULTADO  : PASS nas verificações críticas</code></pre>
           <li><strong>Sem hook em servidor oficial.</strong> O adaptador roda apenas em servidor que o operador controla ou está autorizado a operar. Não há bypass de anti-cheat de terceiros.</li>
           <li><strong>Sem ban automático.</strong> O motor sinaliza e explica; a punição é uma decisão humana, com motivo, data e revisão. O ban por máquina é um pseudônimo com sal, não uma identificação forense.</li>
           <li><strong>Escudo limitado.</strong> Ele cancela hits, valida movimento, limita alcance e pode ocultar alvos na quarentena. Não remove o cheat do cliente, não protege o PC do adversário e não substitui a autoridade do servidor.</li>
+          <li><strong>Malha depende do adaptador e do servidor.</strong> A decisão de efeito só existe se o servidor chamar a malha de forma síncrona antes de aplicar o dano. Ela não roda dentro de servidor oficial de terceiros, não remove o cheat e não torna o alvo protegido invulnerável: o inimigo limpo continua causando dano. Um cheat com entradas fisicamente válidas não é negado pela malha — é problema da camada comportamental.</li>
+          <li><strong>Prova da malha é sintética.</strong> Os 11 cenários e 110 disparos foram construídos no simulador, com seed publicada. Não há teste pareado em servidor real, com jogadores e latência de rede; esse resultado está marcado como <strong>NOT_RUN</strong> e não autoriza dizer que a malha “anula qualquer cheat”.</li>
           <li><strong>Trial local e binário sem assinatura.</strong> O teste de 30 dias pode ser reiniciado apagando arquivos selados; a proteção é dissuasória. O .exe é PyInstaller sem certificado, então SmartScreen pode avisar; confira o SHA-256 antes de executar.</li>
         </ul>
         <p>Se algum desses limites for inaceitável para o seu caso, o Sentinel provavelmente não é o produto certo. É melhor saber agora do que depois da compra.</p>
@@ -486,7 +564,7 @@ RESULTADO  : PASS nas verificações críticas</code></pre>
 
       <section class="legal-section" id="reproduza">
         <div class="legal-section-head">
-          <span class="legal-section-num" aria-hidden="true">08</span>
+          <span class="legal-section-num" aria-hidden="true">09</span>
           <h2><a class="legal-anchor" href="#reproduza">Reproduza você mesmo</a></h2>
         </div>
         <p>O binário de avaliação inclui o dashboard, o simulador, o benchmark e a auditoria. Baixe o ZIP, confira o SHA-256 publicado no repositório e rode os dois comandos abaixo antes de decidir qualquer coisa.</p>
@@ -503,21 +581,21 @@ RESULTADO  : PASS nas verificações críticas</code></pre>
             <span>02</span>
             <div>
               <h3>Rode a prova do motor</h3>
-              <p><code>konaet-sentinel.exe prove</code> executa as sessões de referência e mostra os 6 gates, incluindo “nenhum ban automático”.</p>
+              <p><code>konaet-sentinel.exe prove</code> executa as sessões de referência e mostra os 10 gates, incluindo “nenhum ban automático” e quatro verificações da malha.</p>
             </div>
           </div>
           <div class="pv-step">
             <span>03</span>
             <div>
               <h3>Rode a auditoria</h3>
-              <p><code>konaet-sentinel.exe audit</code> confere modelo, benchmark, robustez, perfis, ledger e o hash do próprio executável. Use <code>--json</code> para guardar o relatório.</p>
+              <p><code>konaet-sentinel.exe audit</code> confere modelo, benchmark, robustez, perfis, aprendizado, malha, ledger e o hash do próprio executável. Use <code>--json</code> para guardar o relatório.</p>
             </div>
           </div>
           <div class="pv-step">
             <span>04</span>
             <div>
               <h3>Compare com o publicado</h3>
-              <p>Abra <a href="assets/benchmark.json" target="_blank" rel="noopener">benchmark.json</a>, <a href="assets/robustness.json" target="_blank" rel="noopener">robustness.json</a> e <a href="assets/adaptation.json" target="_blank" rel="noopener">adaptation.json</a>. O SHA do modelo deve ser o mesmo que aparece no seu audit; o SHA do dataset fica no benchmark e o do protótipo, na memória.</p>
+              <p>Abra <a href="assets/benchmark.json" target="_blank" rel="noopener">benchmark.json</a>, <a href="assets/robustness.json" target="_blank" rel="noopener">robustness.json</a>, <a href="assets/adaptation.json" target="_blank" rel="noopener">adaptation.json</a> e <a href="assets/authority.json" target="_blank" rel="noopener">authority.json</a>. O SHA do modelo deve ser o mesmo que aparece no seu audit; o SHA do dataset fica no benchmark, o do protótipo na memória e o da política na malha.</p>
             </div>
           </div>
         </div>
@@ -534,10 +612,11 @@ python -m sentinel.cli audit
 python -m sentinel.train
 python -m sentinel.robustness --seeds 4
 python tools/adaptation_proof.py
+python tools/authority_proof.py
 python -m unittest discover -s tests</code></pre>
         </div>
 
-        <p>A suíte tem <strong>139 testes</strong> e não depende de internet. O treino e a robustez são determinísticos para a seed publicada; pequenas diferenças de tempo de execução não mudam o resultado. Se o seu audit falhar, o relatório aponta qual verificação falhou e por quê.</p>
+        <p>A suíte tem <strong>165 testes</strong> e não depende de internet. O treino, a robustez e as duas provas são determinísticos para a seed publicada; pequenas diferenças de tempo de execução não mudam o resultado. Se o seu audit falhar, o relatório aponta qual verificação falhou e por quê.</p>
 
         <div class="pv-end">
           <div>
@@ -550,7 +629,7 @@ python -m unittest discover -s tests</code></pre>
           </div>
         </div>
 
-        <p class="legal-foot">Konaet · Konaet Sentinel v1.3.0 · central de provas · última atualização em 29 de outubro de 2026. Números do dataset sintético; limites e protocolo NOT_RUN declarados acima.</p>
+        <p class="legal-foot">Konaet · Konaet Sentinel v1.4.0 · central de provas · última atualização em 29 de outubro de 2026. Números de datasets sintéticos; limites e protocolo NOT_RUN declarados acima.</p>
       </section>
     </article>
   </div>
@@ -567,6 +646,7 @@ python -m unittest discover -s tests</code></pre>
       <a href="legal.html">documentos</a>
       <a href="assets/benchmark.json" target="_blank" rel="noopener">benchmark</a>
       <a href="assets/robustness.json" target="_blank" rel="noopener">robustez</a>
+      <a href="assets/authority.json" target="_blank" rel="noopener">malha</a>
       <a href="https://wa.me/message/43CXZJ7NW2FPDO" target="_blank" rel="noopener">WhatsApp</a>
     </nav>
     <p class="fine">© 2026 Konaet · feito no Brasil · nenhum rastreador neste site · comparação de arquitetura, não de eficácia.</p>
