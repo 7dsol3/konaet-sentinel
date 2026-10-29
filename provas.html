@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Central de provas · Konaet Sentinel</title>
+<meta name="description" content="Benchmark, robustez, auditoria de integridade e comparação de arquitetura com VAC, Vanguard, BattlEye, EAC, FACEIT e Ricochet. Números medidos, limites explícitos e protocolo para repetir.">
+<meta name="theme-color" content="#f4efe6">
+<meta property="og:title" content="Central de provas · Konaet Sentinel">
+<meta property="og:description" content="O que o Sentinel mede, o que não mede e como você confere sozinho. Sem nota de eficácia inventada.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://7dsol3.github.io/konaet-sentinel/assets/cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://7dsol3.github.io/konaet-sentinel/assets/cover.jpg">
+<link rel="canonical" href="https://7dsol3.github.io/konaet-sentinel/provas.html">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preload" as="font" href="assets/fonts/fraunces-normal-300-700-latin.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="assets/fonts/instrument-sans-normal-400-700-latin.woff2" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="legal.css">
+<link rel="stylesheet" href="provas.css">
+</head>
+<body class="legal-page proof-page">
+<a class="skip" href="#documento">Pular para o documento</a>
+<div class="grain" aria-hidden="true"></div>
+<div class="legal-progress" id="legal-progress" aria-hidden="true"></div>
+
+<header class="legal-head">
+  <div class="legal-nav">
+    <a class="brand" href="index.html" aria-label="Konaet Sentinel, voltar ao site">
+      <img src="assets/logo.svg" alt="" width="34" height="34">
+      <span class="brand-word"><b>KONAET</b><small>SENTINEL</small></span>
+    </a>
+    <nav class="legal-nav-links" aria-label="Seções da central de provas">
+      <a href="#protocolo">Protocolo</a>
+      <a href="#benchmark">Benchmark</a>
+      <a href="#robustez">Robustez</a>
+      <a href="#comparativo">Comparativo</a>
+      <a href="#auditoria">Auditoria</a>
+      <a href="#limites">Limites</a>
+    </nav>
+    <a class="legal-back" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M19 12H5m0 0 6-6m-6 6 6 6"/></svg>
+      <span>voltar ao site</span>
+    </a>
+    <a class="btn btn-ink btn-sm" href="index.html#planos">Testar 30 dias</a>
+  </div>
+</header>
+
+<main class="legal-main wrap" id="documento">
+  <div class="legal-hero">
+    <div>
+      <p class="kicker"><span>prova</span> protocolo aberto</p>
+      <h1>Central<br><em>de provas.</em></h1>
+      <p class="legal-hero-lede">Tudo o que o Sentinel afirma, o que não afirma e como você confere sozinho. Números medidos, hashes reproduzíveis e comparação de arquitetura — sem nota de eficácia inventada.</p>
+    </div>
+    <aside class="legal-stamp glass" aria-label="Resumo da prova">
+      <dl>
+        <div><dt>documento</dt><dd>v1.2.1</dd></div>
+        <div><dt>atualizado</dt><dd>29 out 2026</dd></div>
+        <div><dt>dataset</dt><dd>224 sessões</dd></div>
+        <div><dt>janelas</dt><dd>2.240</dd></div>
+        <div><dt>modelo</dt><dd>fc4c3f7a…</dd></div>
+      </dl>
+      <div class="stamp-seal">
+        <img src="assets/logo.svg" alt="" width="26" height="26">
+        <span>Konaet<br>prova reproduzível</span>
+      </div>
+    </aside>
+  </div>
+
+  <div class="pv-metrics" aria-label="Números principais">
+    <article class="pv-metric glass">
+      <span>gates do benchmark</span>
+      <strong>5/5</strong>
+      <small>PASS no dataset sintético</small>
+    </article>
+    <article class="pv-metric glass">
+      <span>AUC por janela</span>
+      <strong>0,9996</strong>
+      <small>224 sessões · 2.240 janelas</small>
+    </article>
+    <article class="pv-metric glass">
+      <span>pior falso positivo</span>
+      <strong>0,000</strong>
+      <small>4 seeds × 9 cenários</small>
+    </article>
+    <article class="pv-metric glass">
+      <span>prova do binário</span>
+      <strong>6/6</strong>
+      <small>prove · 0 bans automáticos</small>
+    </article>
+  </div>
+
+  <div class="legal-layout">
+    <aside class="legal-toc glass" aria-label="Índice da central de provas">
+      <span class="tag-label">nesta página</span>
+      <nav>
+        <a href="#protocolo" class="is-current"><i>01</i>O que a prova cobre</a>
+        <a href="#benchmark"><i>02</i>Benchmark</a>
+        <a href="#robustez"><i>03</i>Robustez</a>
+        <a href="#comparativo"><i>04</i>Comparativo por camada</a>
+        <a href="#auditoria"><i>05</i>Auditoria de integridade</a>
+        <a href="#limites"><i>06</i>Limites explícitos</a>
+        <a href="#reproduza"><i>07</i>Reproduza você mesmo</a>
+      </nav>
+      <div class="legal-toc-foot">
+        Konaet · Brasil<br>
+        Sentinel 1.2.1
+        <a href="#documento">voltar ao topo ↑</a>
+      </div>
+    </aside>
+
+    <article class="legal-doc">
+      <div class="legal-summary glass">
+        <div>
+          <span class="tag-label">resumo em uma frase</span>
+          <p>O Sentinel publica o que mediu, ensina a repetir e separa o que é <strong>medido</strong> do que é <strong>promessa</strong>. Não publicamos ranking de eficácia contra outros anti-cheats porque ninguém — incluindo nós — tem um protocolo pareado público. O que falta está marcado como <strong>NOT_RUN</strong>.</p>
+        </div>
+        <span class="legal-summary-mark" aria-hidden="true">sem<br>palco</span>
+      </div>
+
+      <section class="legal-section" id="protocolo">
+        <div class="legal-section-head">
+          <span class="legal-section-num" aria-hidden="true">01</span>
+          <h2><a class="legal-anchor" href="#protocolo">O que a prova cobre</a></h2>
+        </div>
+        <p>Há duas coisas diferentes nesta página: o <strong>benchmark</strong>, que mede o motor em dados sintéticos gerados pelo simulador incluído, e a <strong>auditoria</strong>, que confere no seu computador se os artefatos e o executável são os que deveriam ser. Nenhuma das duas prova detecção no seu servidor. As duas provam que o pipeline é o mesmo que publicamos e que ele passa nos próprios gates.</p>
+
+        <div class="pv-grid">
+          <article class="pv-card">
+            <span class="pv-num">01 · dataset</span>
+            <h3>224 sessões, 2.240 janelas</h3>
+            <p>482.562 eventos sintéticos e determinísticos no protocolo do jogo. 164 sessões de treino, 30 de validação e 30 de teste. Oito tipos de cheat em duas variantes: overt e stealth.</p>
+          </article>
+          <article class="pv-card">
+            <span class="pv-num">02 · modelo</span>
+            <h3>17 sinais, um SHA</h3>
+            <p>Regressão logística sobre sinais comportamentais, limiar 0,68 e contribuição por sinal no laudo. O SHA-256 do modelo fica gravado no benchmark e no relatório de robustez.</p>
+          </article>
+          <article class="pv-card">
+            <span class="pv-num">03 · motor</span>
+            <h3>Regras físicas + modelo</h3>
+            <p>Velocidade por deslocamento líquido, alcance, cadência, mira, queda, quebra e taxa de pacotes. O híbrido combina regras determinísticas com a probabilidade do modelo.</p>
+          </article>
+          <article class="pv-card">
+            <span class="pv-num">04 · contrato</span>
+            <h3>0 bans automáticos</h3>
+            <p>O motor sinaliza, explica e registra. Quem decide punir é o operador. O escudo pode mitigar o efeito do cheat em partida, mas não remove o cheat do PC de ninguém.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="legal-section" id="benchmark">
+        <div class="legal-section-head">
+          <span class="legal-section-num" aria-hidden="true">02</span>
+          <h2><a class="legal-anchor" href="#benchmark">Benchmark</a></h2>
+        </div>
+        <p>O teste usa a seed <code>20261029</code>, split cronológico e o mesmo motor que roda no dashboard. Os cinco gates são verificados pelo comando <code>prove</code> e pelo <code>audit</code>. O JSON completo está em <a href="assets/benchmark.json" target="_blank" rel="noopener">benchmark.json</a>.</p>
+
+        <div class="pv-scroll">
+          <table class="pv-table">
+            <caption>Gates do benchmark sintético · teste com 30 sessões</caption>
+            <thead><tr><th>gate</th><th>meta</th><th>medido</th><th>estado</th></tr></thead>
+            <tbody>
+              <tr><td>Regras pegam cheats overt</td><td>≥ 0,90</td><td>1,000</td><td><span class="pv-pass">PASS</span></td></tr>
+              <tr><td>Híbrido pega cheats stealth</td><td>≥ 0,80</td><td>1,000</td><td><span class="pv-pass">PASS</span></td></tr>
+              <tr><td>Falso positivo por sessão legítima</td><td>≤ 0,02</td><td>0,000</td><td><span class="pv-pass">PASS</span></td></tr>
+              <tr><td>AUC do modelo por janela</td><td>≥ 0,90</td><td>0,9996</td><td><span class="pv-pass">PASS</span></td></tr>
+              <tr><td>Recall híbrido geral</td><td>≥ 0,85</td><td>1,000</td><td><span class="pv-pass">PASS</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pv-two">
+          <div class="pv-stat">
+            <span>sessões de cheat detectadas</span>
+            <strong>16/16</strong>
+            <small>8 overt + 8 stealth · híbrido</small>
+          </div>
+          <div class="pv-stat">
+            <span>sessões legítimas sem alerta</span>
+            <strong>14/14</strong>
+            <small>falso positivo 0,000</small>
+          </div>
+        </div>
+
+        <div class="legal-note">
+          <span class="tag-label">o que isso prova</span>
+          <p>Que o pipeline roda de ponta a ponta, que as regras e o modelo estão conectados e que os gates passam <em>neste</em> dataset. Não prova generalização para o seu servidor, para o seu jogo ou para cheats que não estão no simulador. A validação em produção exige telemetria rotulada sua.</p>
+        </div>
+      </section>
+
+      <section class="legal-section" id="robustez">
+        <div class="legal-section-head">
+          <span class="legal-section-num" aria-hidden="true">03</span>
+          <h2><a class="legal-anchor" href="#robustez">Robustez</a></h2>
+        </div>
+        <p>O mesmo modelo foi submetido a nove perturbações em quatro seeds. A tabela mostra o pior resultado de cada cenário; nenhum cenário esconde instabilidade na média. O JSON completo está em <a href="assets/robustness.json" target="_blank" rel="noopener">robustness.json</a>.</p>
+
+        <div class="pv-scroll">
+          <table class="pv-table pv-table-compact">
+            <caption>4 seeds × 9 cenários · piores valores por cenário</caption>
+            <thead><tr><th>cenário</th><th>perturbação</th><th>pior FPR</th><th>recall mín.</th><th>AUC mín.</th></tr></thead>
+            <tbody>
+              <tr><td>baseline</td><td>telemetria intacta</td><td>0,000</td><td>1,000</td><td>0,9995</td></tr>
+              <tr><td>drop_05</td><td>5% dos movimentos perdidos</td><td>0,000</td><td>1,000</td><td>0,9996</td></tr>
+              <tr><td>drop_15</td><td>15% dos movimentos perdidos</td><td>0,000</td><td>1,000</td><td>0,9988</td></tr>
+              <tr><td>duplicate_05</td><td>5% de movimentos duplicados</td><td>0,000</td><td>1,000</td><td>0,9996</td></tr>
+              <tr><td>jitter_005</td><td>ruído de 0,05 unidade</td><td>0,000</td><td>1,000</td><td>0,9995</td></tr>
+              <tr><td>jitter_015</td><td>ruído de 0,15 unidade</td><td>0,000</td><td>1,000</td><td>0,9996</td></tr>
+              <tr><td>lag_015</td><td>atraso de até 150 ms</td><td>0,000</td><td>1,000</td><td>0,9992</td></tr>
+              <tr><td>teleport_legit</td><td>teleportes legítimos a cada 10 s</td><td>0,000</td><td>1,000</td><td>0,9994</td></tr>
+              <tr><td>stress</td><td>drop + ruído + atraso + teleporte</td><td>0,000</td><td>1,000</td><td>0,9996</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="pv-fine">A seed de treino é o holdout oficial; as outras três são sondas de estabilidade, não validação de servidor real. O pior AUC entre todas as combinações é <strong>0,9988</strong>, no cenário de 15% de perda de movimento.</p>
+
+        <div class="pv-callout">
+          <span class="tag-label">o que a robustez não é</span>
+          <p>Não é garantia de que o modelo aguenta qualquer rede. É evidência de que perda, duplicata, ruído, atraso e teleporte legítimo não derrubam os gates nas seeds testadas. Se o seu servidor tiver um padrão de perda diferente, rode a validação com os seus dados.</p>
+        </div>
+      </section>
+
+      <section class="legal-section" id="comparativo">
+        <div class="legal-section-head">
+          <span class="legal-section-num" aria-hidden="true">04</span>
+          <h2><a class="legal-anchor" href="#comparativo">Comparativo por camada</a></h2>
+        </div>
+        <p>A tabela compara <strong>arquitetura e política publicadas</strong> por cada fornecedor, não eficácia. Um driver em modo kernel vê coisas que a telemetria do servidor não vê; por outro lado, ele roda no PC do jogador e não é o modelo do Sentinel. São trade-offs diferentes, para problemas diferentes.</p>
+
+        <div class="pv-scroll">
+          <table class="pv-table pv-matrix">
+            <caption>Comparação de arquitetura publicada · consultada em 29 out 2026</caption>
+            <thead>
+              <tr>
+                <th>camada</th>
+                <th class="pv-us">Sentinel</th>
+                <th>VAC</th>
+                <th>Vanguard</th>
+                <th>BattlEye</th>
+                <th>EAC</th>
+                <th>FACEIT</th>
+                <th>Ricochet</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>para quem</th>
+                <td class="pv-us">operador de servidor</td>
+                <td>Valve / Steam</td>
+                <td>Riot</td>
+                <td>estúdios</td>
+                <td>estúdios</td>
+                <td>FACEIT</td>
+                <td>Activision</td>
+              </tr>
+              <tr>
+                <th>onde observa</th>
+                <td class="pv-us">seu servidor</td>
+                <td>servidores Steam</td>
+                <td>cliente do jogador</td>
+                <td>cliente + backend</td>
+                <td>cliente + serviço</td>
+                <td>cliente + plataforma</td>
+                <td>cliente + servidor</td>
+              </tr>
+              <tr>
+                <th>driver kernel</th>
+                <td class="pv-us">não</td>
+                <td>não detalhado</td>
+                <td>sim</td>
+                <td>sim</td>
+                <td>não detalhado</td>
+                <td>sim</td>
+                <td>sim</td>
+              </tr>
+              <tr>
+                <th>telemetria sai do seu controle</th>
+                <td class="pv-us">não · loopback</td>
+                <td>sim</td>
+                <td>sim</td>
+                <td>sim</td>
+                <td>sim</td>
+                <td>sim</td>
+                <td>sim</td>
+              </tr>
+              <tr>
+                <th>quem pune</th>
+                <td class="pv-us">operador humano</td>
+                <td>Valve</td>
+                <td>Riot</td>
+                <td>estúdio</td>
+                <td>estúdio</td>
+                <td>FACEIT</td>
+                <td>Activision</td>
+              </tr>
+              <tr>
+                <th>evidência para o operador</th>
+                <td class="pv-us">ledger local</td>
+                <td>não pública</td>
+                <td>não pública</td>
+                <td>não pública</td>
+                <td>não pública</td>
+                <td>não pública</td>
+                <td>não pública</td>
+              </tr>
+              <tr>
+                <th>benchmark público</th>
+                <td class="pv-us">sintético próprio</td>
+                <td>não publicado</td>
+                <td>não publicado</td>
+                <td>não publicado</td>
+                <td>não publicado</td>
+                <td>não publicado</td>
+                <td>não publicado</td>
+              </tr>
+              <tr>
+                <th>mitigação em partida</th>
+                <td class="pv-us">escudo em partida</td>
+                <td>não</td>
+                <td>não documentada</td>
+                <td>depende do jogo</td>
+                <td>depende do jogo</td>
+                <td>sanção</td>
+                <td>mitigações no jogo</td>
+              </tr>
+              <tr>
+                <th>regra ajustável</th>
+                <td class="pv-us">sim · perfil, limiar, escudo</td>
+                <td>não</td>
+                <td>não</td>
+                <td>parcial · RCon</td>
+                <td>parcial</td>
+                <td>não</td>
+                <td>não</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="pv-hint">arraste a tabela para o lado para ver todos os fornecedores →</p>
+
+        <p class="pv-sources">Fontes oficiais: <a href="https://help.steampowered.com/en/faqs/view/571A-97DA-70E9-FF74" target="_blank" rel="noopener">Valve · VAC</a> · <a href="https://support.riotgames.com/en-us/league-of-legends/performance/riot-vanguard-faq-league-of-legends" target="_blank" rel="noopener">Riot · Vanguard</a> · <a href="https://www.battleye.com/" target="_blank" rel="noopener">BattlEye</a> · <a href="https://www.easy.ac/en-us/" target="_blank" rel="noopener">Easy Anti-Cheat</a> · <a href="https://www.faceit.com/anti-cheat" target="_blank" rel="noopener">FACEIT Anti-Cheat</a> · <a href="https://www.callofduty.com/warzone/ricochet" target="_blank" rel="noopener">Call of Duty · Ricochet</a>. Onde o fornecedor não detalha publicamente, a célula diz “não detalhado”; não inferimos o contrário.</p>
+
+        <div class="pv-callout pv-callout-strong">
+          <span class="tag-label">superioridade medida: NOT_RUN</span>
+          <p>Nenhum desses fornecedores publica recall e falso positivo em um protocolo que possamos repetir, e nós não temos acesso aos binários deles. Um teste pareado — mesmas partidas, mesmos cheats, mesmos rótulos, mesmo servidor — não foi executado. Até que seja, dizer que o Sentinel é “superior” é opinião, não resultado. O que podemos afirmar é o que está medido nesta página.</p>
+        </div>
+
+        <div class="pv-two pv-two-cards">
+          <div class="pv-card">
+            <span class="pv-num">onde somos diferentes</span>
+            <h3>Controle e evidência na sua mão</h3>
+            <p>Regra ajustável, laudo por sinal, ledger local, decisão humana e escudo em partida. O operador vê por que o alerta subiu e pode rever o caso sem depender de suporte externo.</p>
+          </div>
+          <div class="pv-card">
+            <span class="pv-num">onde eles são mais fortes</span>
+            <h3>Kernel, escala e integração oficial</h3>
+            <p>Driver em modo kernel, milhões de partidas, equipes dedicadas e acesso ao cliente do jogo. O Sentinel não tem nada disso e não finge ter. Ele cobre o que o servidor vê, no servidor que você controla.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="legal-section" id="auditoria">
+        <div class="legal-section-head">
+          <span class="legal-section-num" aria-hidden="true">05</span>
+          <h2><a class="legal-anchor" href="#auditoria">Auditoria de integridade</a></h2>
+        </div>
+        <p>O comando <code>audit</code> é uma autoverificação local. Ele não pede internet, não envia dados e não substitui assinatura digital. Ele responde a uma pergunta prática: <strong>os arquivos que estão rodando são os que o benchmark e o pacote dizem que são?</strong></p>
+
+        <div class="pv-checks">
+          <div><span>01</span><p><strong>modelo</strong> — carrega o classificador, calcula o SHA-256 e lista os 17 sinais.</p></div>
+          <div><span>02</span><p><strong>benchmark</strong> — exige PASS, 5 gates e o mesmo SHA de modelo gravado no relatório.</p></div>
+          <div><span>03</span><p><strong>robustez</strong> — exige versão 2, pelo menos 2 seeds, 2 cenários, todos limpos e o mesmo SHA.</p></div>
+          <div><span>04</span><p><strong>perfis</strong> — confere os 8 perfis esperados: minecraft, dayz, infestation, pubg, cod, battlefield, cs2 e generic.</p></div>
+          <div><span>05</span><p><strong>ledger</strong> — verifica a cadeia SHA-256 da evidência; ausência de ledger de produção ainda não é falha.</p></div>
+          <div><span>06</span><p><strong>binário</strong> — no .exe congelado, compara o SHA do executável com o <code>HASHES.txt</code> do pacote.</p></div>
+        </div>
+
+        <div class="pv-terminal">
+          <div class="pv-terminal-head"><span>konaet-sentinel.exe audit</span><b>PASS</b></div>
+<pre><code>[PASS] modelo     sha256 fc4c3f7a80eb7261...
+[PASS] benchmark  5/5 gates · AUC 0.9996 · modelo confere
+[PASS] robustez   4 seeds × 9 cenários · pior FPR 0.000
+[PASS] perfis     8 perfis: minecraft ... generic
+[PASS] ledger     sem ledger de produção ainda (não é falha)
+[PASS] binário    hash confere com HASHES.txt
+
+relatório  : sha256 e601a3bdd3bd388c... (detecta alteração)
+RESULTADO  : PASS nas verificações críticas</code></pre>
+        </div>
+
+        <p>O relatório termina com o SHA-256 do próprio JSON canônico. Isso detecta alteração posterior do relatório, mas <strong>não é uma assinatura digital</strong>: quem alterar o relatório e recalcular o hash produz outro hash válido. A confiança vem de comparar o hash do executável com o publicado no repositório e com o <code>HASHES.txt</code> do pacote — e de baixar o pacote da origem oficial.</p>
+
+        <div class="pv-callout">
+          <span class="tag-label">o que a auditoria não faz</span>
+          <p>Não prova que o dataset sintético representa o seu jogo, não prova que o modelo acerta no seu servidor, não verifica assinatura de código e não impede que alguém modifique o binário. Ela só mostra, com hash, se os artefatos e o executável são coerentes com o que foi publicado.</p>
+        </div>
+      </section>
+
+      <section class="legal-section" id="limites">
+        <div class="legal-section-head">
+          <span class="legal-section-num" aria-hidden="true">06</span>
+          <h2><a class="legal-anchor" href="#limites">Limites explícitos</a></h2>
+        </div>
+        <ul>
+          <li><strong>Dataset sintético.</strong> Os números provam o pipeline e os gates no simulador; não provam detecção no seu servidor. A validação em produção depende de telemetria rotulada sua.</li>
+          <li><strong>Sem driver kernel e sem atestação de GPU.</strong> O Sentinel não inspeciona o PC do jogador. Ele vê o que o servidor vê; um cheat que não altere a telemetria observável pode passar.</li>
+          <li><strong>Sem hook em servidor oficial.</strong> O adaptador roda apenas em servidor que o operador controla ou está autorizado a operar. Não há bypass de anti-cheat de terceiros.</li>
+          <li><strong>Sem ban automático.</strong> O motor sinaliza e explica; a punição é uma decisão humana, com motivo, data e revisão. O ban por máquina é um pseudônimo com sal, não uma identificação forense.</li>
+          <li><strong>Escudo limitado.</strong> Ele cancela hits, valida movimento, limita alcance e pode ocultar alvos na quarentena. Não remove o cheat do cliente, não protege o PC do adversário e não substitui a autoridade do servidor.</li>
+          <li><strong>Trial local e binário sem assinatura.</strong> O teste de 30 dias pode ser reiniciado apagando arquivos selados; a proteção é dissuasória. O .exe é PyInstaller sem certificado, então SmartScreen pode avisar; confira o SHA-256 antes de executar.</li>
+        </ul>
+        <p>Se algum desses limites for inaceitável para o seu caso, o Sentinel provavelmente não é o produto certo. É melhor saber agora do que depois da compra.</p>
+      </section>
+
+      <section class="legal-section" id="reproduza">
+        <div class="legal-section-head">
+          <span class="legal-section-num" aria-hidden="true">07</span>
+          <h2><a class="legal-anchor" href="#reproduza">Reproduza você mesmo</a></h2>
+        </div>
+        <p>O binário de avaliação inclui o dashboard, o simulador, o benchmark e a auditoria. Baixe o ZIP, confira o SHA-256 publicado no repositório e rode os dois comandos abaixo antes de decidir qualquer coisa.</p>
+
+        <div class="pv-steps">
+          <div class="pv-step">
+            <span>01</span>
+            <div>
+              <h3>Baixe e confira o hash</h3>
+              <p>O SHA-256 do ZIP está no <a href="https://github.com/7dsol3/konaet-sentinel#verificar-o-download" target="_blank" rel="noopener">repositório público</a>. O pacote traz <code>HASHES.txt</code> com o hash de cada arquivo extraído.</p>
+            </div>
+          </div>
+          <div class="pv-step">
+            <span>02</span>
+            <div>
+              <h3>Rode a prova do motor</h3>
+              <p><code>konaet-sentinel.exe prove</code> executa as sessões de referência e mostra os 6 gates, incluindo “nenhum ban automático”.</p>
+            </div>
+          </div>
+          <div class="pv-step">
+            <span>03</span>
+            <div>
+              <h3>Rode a auditoria</h3>
+              <p><code>konaet-sentinel.exe audit</code> confere modelo, benchmark, robustez, perfis, ledger e o hash do próprio executável. Use <code>--json</code> para guardar o relatório.</p>
+            </div>
+          </div>
+          <div class="pv-step">
+            <span>04</span>
+            <div>
+              <h3>Compare com o publicado</h3>
+              <p>Abra <a href="assets/benchmark.json" target="_blank" rel="noopener">benchmark.json</a> e <a href="assets/robustness.json" target="_blank" rel="noopener">robustness.json</a>. O SHA do modelo deve ser o mesmo que aparece no seu audit; o SHA do dataset fica no benchmark.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pv-terminal">
+          <div class="pv-terminal-head"><span>Windows · binário de avaliação</span><b>30 dias</b></div>
+<pre><code>konaet-sentinel.exe prove
+konaet-sentinel.exe audit
+konaet-sentinel.exe audit --json &gt; auditoria.json
+
+# do fonte, com Python 3.12
+python -m sentinel.cli prove
+python -m sentinel.cli audit
+python -m sentinel.train
+python -m sentinel.robustness --seeds 4
+python -m unittest discover -s tests</code></pre>
+        </div>
+
+        <p>A suíte tem <strong>118 testes</strong> e não depende de internet. O treino e a robustez são determinísticos para a seed publicada; pequenas diferenças de tempo de execução não mudam o resultado. Se o seu audit falhar, o relatório aponta qual verificação falhou e por quê.</p>
+
+        <div class="pv-end">
+          <div>
+            <span class="tag-label">próximo passo</span>
+            <h3>Teste por 30 dias.<br>Rode a prova antes de pagar.</h3>
+          </div>
+          <div class="pv-end-actions">
+            <a class="btn btn-ink" href="assets/konaet-sentinel-trial.zip" download>Baixar o trial</a>
+            <a class="quiet-link" href="index.html#planos">ver planos <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+
+        <p class="legal-foot">Konaet · Konaet Sentinel v1.2.1 · central de provas · última atualização em 29 de outubro de 2026. Números do dataset sintético; limites e protocolo NOT_RUN declarados acima.</p>
+      </section>
+    </article>
+  </div>
+</main>
+
+<footer class="legal-footer">
+  <div class="wrap legal-footer-inner">
+    <a class="brand" href="index.html" aria-label="Konaet Sentinel">
+      <img src="assets/logo.svg" alt="" width="34" height="34">
+      <span class="brand-word"><b>KONAET</b><small>SENTINEL</small></span>
+    </a>
+    <nav class="legal-footer-links" aria-label="Links da central de provas">
+      <a href="index.html">site</a>
+      <a href="legal.html">documentos</a>
+      <a href="assets/benchmark.json" target="_blank" rel="noopener">benchmark</a>
+      <a href="assets/robustness.json" target="_blank" rel="noopener">robustez</a>
+      <a href="https://wa.me/message/43CXZJ7NW2FPDO" target="_blank" rel="noopener">WhatsApp</a>
+    </nav>
+    <p class="fine">© 2026 Konaet · feito no Brasil · nenhum rastreador neste site · comparação de arquitetura, não de eficácia.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var bar = document.getElementById("legal-progress");
+  var links = Array.prototype.slice.call(document.querySelectorAll(".legal-toc nav a"));
+  var entries = links.map(function (link) {
+    var id = link.getAttribute("href").slice(1);
+    return { link: link, section: document.getElementById(id) };
+  }).filter(function (entry) { return entry.section; });
+  var ticking = false;
+
+  function update() {
+    var top = window.scrollY || window.pageYOffset;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    if (bar) bar.style.transform = "scaleX(" + (max > 0 ? Math.min(top / max, 1) : 0) + ")";
+    var active = entries.length ? entries[0] : null;
+    entries.forEach(function (entry) {
+      if (entry.section.getBoundingClientRect().top <= 180) active = entry;
+    });
+    if (active) {
+      entries.forEach(function (entry) { entry.link.classList.toggle("is-current", entry === active); });
+    }
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", function () {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }, { passive: true });
+  update();
+})();
+</script>
+</body>
+</html>

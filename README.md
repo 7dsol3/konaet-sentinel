@@ -23,23 +23,31 @@ integração oficial: a telemetria precisa vir do servidor que você opera. O
 perfil CS2 é para servidor comunitário/dedicado autorizado, não é VAC e não
 cobre servidor oficial da Valve.
 
-A build 1.2 usa `--onedir` (pasta com `_internal/`) e abre o dashboard com
+A build 1.2.1 usa `--onedir` (pasta com `_internal/`) e abre o dashboard com
 duplo clique. Para ver a prova no console:
 
 ```bat
 konaet-sentinel.exe prove
+konaet-sentinel.exe audit
 ```
+
+O `prove` roda as sessões de referência e mostra os gates. O `audit` confere o
+modelo, o benchmark, a robustez, os oito perfis, o ledger e o SHA do executável
+contra o `HASHES.txt` do pacote; `audit --json` gera o relatório com hash
+próprio. Nenhum dos dois envia dados.
 
 Relatórios públicos do motor: [benchmark.json](assets/benchmark.json) e
 [robustness.json](assets/robustness.json). Ambos são sintéticos; leia o aviso
-dentro dos arquivos.
+dentro dos arquivos. A [central de provas](provas.html) reúne os números, os
+limites e a comparação de arquitetura com outros anti-cheats — sem alegar
+superioridade sem protocolo pareado.
 
 ## Verificar o download
 
-SHA-256 do ZIP publicado (v1.2.0):
+SHA-256 do ZIP publicado (v1.2.1):
 
 ```
-72d21cafafffbb85756f01866825aff90d84b9989bc7a633655e7007ac20fa85
+b004f5ac91a6e3e389cb66647457357051b5377be5321c3c4c46d3ae3ca11841
 ```
 
 O ZIP também contém `HASHES.txt` com o SHA-256 de cada arquivo. O executável

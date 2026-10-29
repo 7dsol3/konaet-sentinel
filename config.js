@@ -2,7 +2,7 @@
    ou contato. A chave PIX começa vazia de propósito: sem ela o checkout avisa
    que o pagamento não está configurado e não gera um QR Code falso. */
 window.KONAET = {
-  version: "1.2.0",
+  version: "1.2.1",
   contact: {
     // Link curto do WhatsApp já usado pela Konaet.
     whatsapp: "https://wa.me/message/43CXZJ7NW2FPDO",
